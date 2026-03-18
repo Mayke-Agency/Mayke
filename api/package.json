@@ -1,5 +1,8 @@
 {
   "name": "mayke-agency",
   "version": "1.0.0",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
 }
