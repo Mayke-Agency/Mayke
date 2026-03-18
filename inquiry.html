@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mayke — Inquiry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Start a project with Mayke." />
+  <meta name="theme-color" content="#EBDAC6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1" />
+</head>
+
+<body class="page-inquiry">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header is-hidden" data-header>
+  <div class="container header-inner">
+    <a class="nav-brand" href="index.html#about" aria-label="Mayke home">
+        <img class="nav-logo" src="assets/maykeLogoDark.svg" alt="Mayke" />
+      </a>
+
+    <button class="nav-toggle" data-burger aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav page-inquiry" data-nav aria-label="Primary">
+      <ul class="nav-list">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="capabilities.html">Capabilities</a></li>
+        <li><a href="clients.html">Portfolio</a></li>
+        <li><a class="nav-cta" href="inquiry.html">Work with us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <section class="inquiry inquiry--bleed" aria-label="Inquiry">
+  <div class="inquiry-bg" style="background-image: url('assets/product-shoot.jpg');"></div>
+
+  <div class="inquiry-wrap">
+    <header class="inquiry-head">
+      <p class="inquiry-kicker">Inquiry</p>
+    </header>
+
+    <form class="inquiry-form" id="inquiry-form" novalidate>
+      <div class="grid">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" placeholder="Full name" required>
+        </div>
+
+        <div class="field">
+          <label for="name">Your company</label>
+          <input id="name" name="name" type="text" placeholder="Company name" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@brand.com" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">How can we support you?</label>
+        <textarea id="message" name="message" rows="6" placeholder="Goals, context, links, timing..." required></textarea>
+      </div>
+
+      <div class="form-row">
+        <button class="btn chic-submit" type="submit">Send inquiry</button>
+      </div>
+
+      <p id="form-status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/maykeLogoDark.svg" alt="Mayke logo" />
+      </div>
+
+      <nav aria-label="Social" class="foot-social">
+        <a href="https://instagram.com/YOURHANDLE" target="_blank" rel="noopener" aria-label="Instagram"></a>
+        <a href="https://tiktok.com/@YOURHANDLE" target="_blank" rel="noopener" aria-label="TikTok"></a>
+        <a href="mailto:alan@maykeagency.com" aria-label="Email"></a>
+      </nav>
+
+      <div class="foot-meta">© <span id="year"></span> Mayke</div>
+
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

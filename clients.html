@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mayke — Clients</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Selected clients and results by Mayke." />
+  <meta name="theme-color" content="#EBDAC6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header is-hidden" data-header>
+  <div class="container header-inner">
+    <a class="nav-brand" href="index.html#about" aria-label="Mayke home">
+        <img class="nav-logo" src="assets/maykeLogoDark.svg" alt="Mayke" />
+      </a>
+
+    <button class="nav-toggle" data-burger aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" data-nav aria-label="Primary">
+      <ul class="nav-list">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="capabilities.html">Capabilities</a></li>
+        <li><a href="clients.html">Portfolio</a></li>
+        <li><a class="nav-cta" href="inquiry.html">Work with us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <!-- Client media grid -->
+   <section class="clients-gallery" aria-label="Clients gallery">
+      <div class="clients-grid">
+        <a class="client-tile" href="#" aria-label="Client 1">
+          <img class="client-img is-default make-white" src="assets/clients/client-logo/lagunaCoffeeLogo.svg" alt="Client 1 preview">
+          <video
+            class="client-img is-hover"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            >
+            <source src="assets/clients/client-video/lagunaCoffee.mov" type="video/mp4" />
+          </video>
+        </a>
+
+        <a class="client-tile" href="#" aria-label="Client 2">
+          <img class="client-img is-default make-white" src="assets/clients/client-logo/jn-traveler.svg" alt="Client 2 preview">
+          <img class="client-img is-hover" src="assets/clients/client-video/jntraveler-website.png" alt="Client 7 preview" />
+        </a>
+
+        <a class="client-tile" href="#" aria-label="Client 3">
+          <img class="client-img is-default make-white" src="assets/clients/client-logo/wigzLogo.svg" alt="Client 3 preview">
+          <video
+            class="client-img is-hover"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            >
+            <source src="assets/clients/client-video/wigz.mov" type="video/mp4" />
+          </video>
+        </a>
+
+        <a class="client-tile" href="#" aria-label="Client 4">
+          <img class="client-img is-default make-white" src="assets/clients/client-logo/rif-logo.svg" alt="Client 4 preview">
+          <video
+            class="client-img is-hover"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            >
+            <source src="assets/clients/client-video/wigz.mov" type="video/mp4" />
+          </video>
+        </a>
+
+        <a class="client-tile" href="#" aria-label="Client 5">
+          <img class="client-img is-default make-white" src="assets/clients/client-logo/mayu-logo.svg" alt="Client 5 preview">
+          <video
+            class="client-img is-hover"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            >
+            <source src="assets/clients/client-video/mayu-video.MP4" type="video/mp4" />
+          </video>
+        </a>
+
+        <a class="client-tile" href="#" aria-label="Client 6">
+          <img class="client-img is-default make-white" src="assets/clients/client-logo/coyoteGrillLogo.svg" alt="Client 6 preview">
+          <video
+            class="client-img is-hover"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            >
+            <source src="assets/clients/client-video/coyotoGrill.mov" type="video/mp4" />
+          </video>
+        </a>
+
+        <a class="client-tile client-jete" href="#" aria-label="Client 7">
+          <img class="client-img is-default make-white" src="assets/clients/client-logo/jete-wordmark.svg" alt="Client 7 preview">
+          <img class="client-img is-hover" src="assets/clients/client-video/jete-website.png" alt="Client 7 preview" />
+        </a>
+        
+        <a class="client-tile" href="#" aria-label="Client 8">
+          <img class="client-img is-default make-white" src="assets/clients/client-logo/dog-logo.svg" alt="Client 8 preview">
+          <video
+            class="client-img is-hover"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            >
+            <source src="assets/clients/client-video/wigz.mov" type="video/mp4" />
+          </video>
+        </a>
+      </div>
+    </section>
+
+    <!-- Testimonials carousel -->
+    <section class="section testimonials t-section" aria-label="Testimonials" data-reveal>
+  <div class="container">
+    <header class="testimonials-head">
+      <p class="section-kicker">Words from our clients</p>
+    </header>
+
+    <div class="t-carousel" data-testimonials>
+      <button class="t-arrow t-prev">‹</button>
+
+      <div class="t-viewport">
+        <div class="t-track">
+          <article class="t-slide">
+            <p class="t-quote">
+              “Working with Mayke made a huge difference for our business.
+              Our website finally feels like us, clean, easy to use, and actually bringing in leads.
+              People have even mentioned how much they love the look and flow of it.”
+            </p>
+            <p class="t-meta">— Courtney Jaimes,  Jete Dance Center</p>
+          </article>
+
+          <article class="t-slide">
+            <p class="t-quote">
+              “Since Mayke took over our social media, everything has been more consistent and intentional.
+              We’re getting more engagement, more inquiries, and the content actually feels like it represents us.
+            </p>
+            <p class="t-meta">— Wigz</p>
+          </article>
+
+          <article class="t-slide">
+            <p class="t-quote">
+              “Mayke really helped us figure out who we are as a brand.
+              Everything feels more clear and put together now, from our visuals to how we talk about what we do.
+              It gave us a level of confidence we didn’t have before.”
+            </p>
+            <p class="t-meta">— Daughter of Gaia</p>
+          </article>
+        </div>
+      </div>
+
+      <button class="t-arrow t-next">›</button>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/maykeLogoDark.svg" alt="Mayke logo" />
+      </div>
+
+      <nav aria-label="Social" class="foot-social">
+        <a href="https://instagram.com/YOURHANDLE" target="_blank" rel="noopener" aria-label="Instagram"></a>
+        <a href="https://tiktok.com/@YOURHANDLE" target="_blank" rel="noopener" aria-label="TikTok"></a>
+        <a href="mailto:alan@maykeagency.com" aria-label="Email"></a>
+      </nav>
+
+      <div class="foot-meta">© <span id="year"></span> Mayke</div>
+
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
