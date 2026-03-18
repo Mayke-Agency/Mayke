@@ -83,26 +83,33 @@ export default async function handler(req, res) {
     if (status) status.textContent = "Sending...";
 
     try {
-      const res = await fetch("/api/inquiry", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+  const res = await fetch("/api/inquiry", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
 
-      const data = await res.json();
+  const text = await res.text();
+  let data = {};
 
-      if (!res.ok) {
-        throw new Error(data?.error || "Something went wrong.");
-      }
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch {
+    data = { error: text || "Unexpected server response." };
+  }
 
-      form.reset();
-      if (status) status.textContent = "Inquiry sent successfully.";
-    } catch (error) {
-      if (status) status.textContent = error.message || "Unable to send inquiry.";
-    } finally {
-      submitBtn?.removeAttribute("disabled");
-    }
+  if (!res.ok) {
+    throw new Error(data?.error || "Something went wrong.");
+  }
+
+  form.reset();
+  if (status) status.textContent = "Inquiry sent successfully.";
+} catch (error) {
+  if (status) status.textContent = error.message || "Unable to send inquiry.";
+} finally {
+  submitBtn?.removeAttribute("disabled");
+}
   });
 })();
