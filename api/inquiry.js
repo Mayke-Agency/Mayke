@@ -82,34 +82,34 @@ export default async function handler(req, res) {
     submitBtn?.setAttribute("disabled", "true");
     if (status) status.textContent = "Sending...";
 
-    try {
-  const res = await fetch("/api/inquiry", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  const text = await res.text();
-  let data = {};
-
   try {
-    data = text ? JSON.parse(text) : {};
-  } catch {
-    data = { error: text || "Unexpected server response." };
-  }
+    const res = await fetch("/api/inquiry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  if (!res.ok) {
-    throw new Error(data?.error || "Something went wrong.");
-  }
+    const raw = await res.text();
 
-  form.reset();
-  if (status) status.textContent = "Inquiry sent successfully.";
-} catch (error) {
-  if (status) status.textContent = error.message || "Unable to send inquiry.";
-} finally {
-  submitBtn?.removeAttribute("disabled");
-}
+    let data;
+    try {
+      data = raw ? JSON.parse(raw) : {};
+    } catch {
+      data = { error: raw || "Unexpected server response." };
+    }
+
+    if (!res.ok) {
+      throw new Error(data.error || "Something went wrong.");
+    }
+
+    form.reset();
+    if (status) status.textContent = "Inquiry sent successfully.";
+  } catch (error) {
+    if (status) status.textContent = error.message || "Unable to send inquiry.";
+  } finally {
+    submitBtn?.removeAttribute("disabled");
+  }
   });
 })();
