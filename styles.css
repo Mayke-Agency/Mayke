@@ -499,6 +499,10 @@ body.nav-open .nav-toggle span:last-child{
     min-height:0 !important;
   }
 
+  .section-kicker{
+    margin:0 0 1.2rem;
+  }
+
   .about-split__copy,
   .about-split--full .about-split__copy{
     min-height: calc(100vh - 64px);
@@ -511,7 +515,7 @@ body.nav-open .nav-toggle span:last-child{
   .subcopy{
     display: flex;
     flex-direction: column;
-    gap: 1.4rem; /* space between paragraphs + link */
+    gap: 1.2rem; /* space between paragraphs + link */
   }
 
   .about-cap-link{
