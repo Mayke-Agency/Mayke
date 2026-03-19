@@ -506,7 +506,7 @@ body.nav-open .nav-toggle span:last-child{
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 1.8rem var(--pad) 2.5rem !important;
+    padding: 1.6rem var(--pad) 2.5rem !important;
   }
 
   .about-split__copy-inner,
@@ -521,7 +521,7 @@ body.nav-open .nav-toggle span:last-child{
   }
 
   .about-cap-link{
-    margin-top: 2rem;
+    margin-top: 2.2rem;
   }
 
   .about-split__media,
