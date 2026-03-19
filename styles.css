@@ -499,28 +499,28 @@ body.nav-open .nav-toggle span:last-child{
     min-height:0 !important;
   }
 
-  .section-kicker{
-    margin:0 0 1.2rem;
-  }
-
   .about-split__copy,
   .about-split--full .about-split__copy{
     min-height: calc(100vh - 64px);
     display: flex;
-    align-items: flex-start; /* anchors higher */
+    flex-direction: column;
+    justify-content: space-between; /* spreads content vertically */
 
-    padding: 2.25rem var(--pad) 3.5rem;
+    padding: 2.25rem var(--pad) 2.5rem;
   }
 
   .subcopy{
     display: flex;
     flex-direction: column;
-    gap: 1.2rem; /* space between paragraphs + link */
+  }
+
+  .subcopy p{
+    margin-bottom: 1rem;
   }
 
   .about-cap-link{
-  margin-top: 2.5rem;
-}
+    margin-top: 2rem;
+  }
 
   .about-split__media,
   .about-split--full .about-split__media{
