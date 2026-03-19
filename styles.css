@@ -512,7 +512,7 @@ body.nav-open .nav-toggle span:last-child{
   .subcopy{
     display: flex;
     flex-direction: column;
-    gap: 1.8rem; /* space between paragraphs + link */
+    gap: 2.2rem; /* space between paragraphs + link */
   }
 
   .about-split__media,
