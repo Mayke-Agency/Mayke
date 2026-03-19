@@ -500,14 +500,20 @@ body.nav-open .nav-toggle span:last-child{
   }
 
   .about-split__copy,
-  .about-split--full .about-split__copy{
-    min-height: calc(100vh - 64px); 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.about-split--full .about-split__copy{
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
 
-    padding: clamp(5rem, 10vw, 7rem) var(--pad) clamp(3rem, 6vw, 4rem);
-  }
+  padding: clamp(3.5rem, 8vw, 5rem) var(--pad) clamp(3rem, 6vw, 4rem);
+}
+
+.subcopy{
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem; /* space between paragraphs + link */
+}
 
   .about-split__media,
   .about-split--full .about-split__media{
