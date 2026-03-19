@@ -571,7 +571,7 @@ if (sessionStorage.getItem(HERO_DISMISSED_KEY) === "1") {
   });
 })();
 /* =========================================================
-   Inquiry form — submit to Vercel function
+   Inquiry form submit
    ========================================================= */
 (() => {
   const form = document.getElementById("inquiry-form");
@@ -582,7 +582,7 @@ if (sessionStorage.getItem(HERO_DISMISSED_KEY) === "1") {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const submitButton = form.querySelector('button[type="submit"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
     const formData = new FormData(form);
 
     const payload = {
@@ -596,7 +596,7 @@ if (sessionStorage.getItem(HERO_DISMISSED_KEY) === "1") {
       return;
     }
 
-    submitButton?.setAttribute("disabled", "true");
+    submitBtn?.setAttribute("disabled", "true");
     if (status) status.textContent = "Sending...";
 
     try {
@@ -608,18 +608,25 @@ if (sessionStorage.getItem(HERO_DISMISSED_KEY) === "1") {
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+      const raw = await res.text();
+
+      let data;
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        data = { error: raw || "Unexpected server response." };
+      }
 
       if (!res.ok) {
-        throw new Error(data?.error || "Something went wrong.");
+        throw new Error(data.error || "Something went wrong.");
       }
 
       form.reset();
       if (status) status.textContent = "Inquiry sent successfully.";
-    } catch (err) {
-      if (status) status.textContent = err.message || "Unable to send inquiry.";
+    } catch (error) {
+      if (status) status.textContent = error.message || "Unable to send inquiry.";
     } finally {
-      submitButton?.removeAttribute("disabled");
+      submitBtn?.removeAttribute("disabled");
     }
   });
 })();
