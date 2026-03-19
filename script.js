@@ -265,16 +265,11 @@ if (video) {
   video.addEventListener("timeupdate", onTimeUpdate);
   video.addEventListener("ended", showStill);
 
-  if (reduceMotion) {
-    startStillBlend();
-    showStill();
-    video.pause();
-  } else {
-    video.play().catch(() => {
-    // keep the poster / first frame instead of immediately forcing the still image
-    console.warn("Hero video autoplay failed.");
-  });;
-  }
+  video.play().catch(() => {
+  console.warn("Hero video autoplay failed.");
+  startStillBlend();
+  showStill();
+});
 }
 
   const easeInOutCubic = (t) =>
@@ -338,7 +333,7 @@ if (video) {
 
     const startHeight = hero.offsetHeight;
     const startScroll = window.scrollY;
-    const duration = reduceMotion ? 0 : 1400; // slower
+    const duration = 1400;
     const start = performance.now();
 
     hero.style.height = `${startHeight}px`;
