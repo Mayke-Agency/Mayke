@@ -271,9 +271,9 @@ if (video) {
     video.pause();
   } else {
     video.play().catch(() => {
-      startStillBlend();
-      showStill();
-    });
+    // keep the poster / first frame instead of immediately forcing the still image
+    console.warn("Hero video autoplay failed.");
+  });;
   }
 }
 
