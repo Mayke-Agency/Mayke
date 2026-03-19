@@ -505,7 +505,7 @@ body.nav-open .nav-toggle span:last-child{
     display: flex;
     align-items: flex-start; /* anchors higher */
 
-    padding: 1.75rem var(--pad) 3.5rem;
+    padding: 2.25rem var(--pad) 3.5rem;
   }
 
   .subcopy{
@@ -515,7 +515,7 @@ body.nav-open .nav-toggle span:last-child{
   }
 
   .about-cap-link{
-  margin-top: 1.8rem;
+  margin-top: 2.5rem;
 }
 
   .about-split__media,
