@@ -563,7 +563,42 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+function initLazyVideos() {
+  const videos = Array.from(document.querySelectorAll("video"));
+  if (!videos.length) return;
 
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const video = entry.target;
+      const sources = Array.from(video.querySelectorAll("source[data-src]"));
+
+      if (sources.length) {
+        sources.forEach((source) => {
+          source.src = source.dataset.src;
+          source.removeAttribute("data-src");
+        });
+
+        video.load();
+
+        if (video.autoplay) {
+          video.play().catch(() => {});
+        }
+      }
+
+      observer.unobserve(video);
+    });
+  }, {
+    rootMargin: "200px 0px"
+  });
+
+  videos.forEach((video) => {
+    if (video.querySelector("source[data-src]")) {
+      io.observe(video);
+    }
+  });
+}
   initYear();
   initHeader();
   initHeroFade();
@@ -576,5 +611,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initReveal();
     initTestimonials();
     initCapabilities();
+    initLazyVideos();
   });
 });
