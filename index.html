@@ -19,8 +19,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css?v=2" />
 
@@ -89,7 +90,7 @@
           playsinline
           preload="auto"
           aria-hidden="true"
-          poster="assets/hero/creation-of-adam.jpeg"
+          poster="assets/hero/creation-of-adam.webp"
         >
           <source src="assets/hero/fall-of-icarus-short.mp4" type="video/mp4" />
         </video>
@@ -97,7 +98,7 @@
         <div
           class="hero-still"
           aria-hidden="true"
-          style="background-image: url('assets/hero/creation-of-adam.jpeg');"
+          style="background-image: url('assets/hero/creation-of-adam.webp');"
         ></div>
       </div>
 
@@ -163,7 +164,7 @@
             playsinline
             preload="metadata"
             aria-hidden="true"
-            poster="assets/about-poster.jpg"
+            poster="assets/about-poster.webp"
           >
             <source src="assets/laguna-drone.mp4" type="video/mp4">
           </video>
@@ -195,7 +196,7 @@
     <section
       class="section next-steps"
       data-reveal
-      style="--nextsteps-bg: url('assets/cheers.jpeg');"
+      style="--nextsteps-bg: url('assets/cheers.webp');"
       aria-label="Next steps"
     >
       <div class="container next-steps-inner">
