@@ -14,16 +14,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 
+  /* =========================================================
+     GLOBAL HELPERS
+     ========================================================= */
+
+  function setBodyReady() {
+    body.classList.add("is-ready");
+    body.classList.remove("is-entering");
+  }
+
+  function setHomeReady() {
+    body.classList.add("home-ready");
+  }
+
+  function clearHomeReady() {
+    body.classList.remove("home-ready");
+  }
+
+  function getHeaderOffset() {
+    const headerEl = document.querySelector(".site-header");
+    return headerEl ? headerEl.offsetHeight : 0;
+  }
+
+  /* =========================================================
+     YEAR
+     ========================================================= */
+
   function initYear() {
     const yearEl = document.getElementById("year");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());
   }
+
+  /* =========================================================
+     HEADER
+     Keeps your original about-based visibility logic,
+     plus solid background state after scrolling.
+     ========================================================= */
 
   function initHeader() {
     if (!header) return;
 
     if (!about) {
       header.classList.remove("is-hidden");
+      if (window.scrollY > 24) header.classList.add("is-solid");
       return;
     }
 
@@ -31,7 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
       header.classList.toggle("is-hidden", !visible);
     };
 
+    const updateSolidState = () => {
+      header.classList.toggle("is-solid", window.scrollY > 24);
+    };
+
     if (window.scrollY < 30) setHeaderVisible(false);
+    updateSolidState();
 
     const navIO = new IntersectionObserver(
       (entries) => {
@@ -43,7 +81,110 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     navIO.observe(about);
+
+    window.addEventListener("scroll", updateSolidState, { passive: true });
+    window.addEventListener("pageshow", updateSolidState);
   }
+
+  /* =========================================================
+     HERO MEDIA STABILIZATION
+     New: still image is the first state, video only fades in
+     when ready, and back navigation re-inits cleanly.
+     ========================================================= */
+
+  function initHeroMedia() {
+    if (!hero) return;
+
+    const heroMedia = hero.querySelector(".hero-media");
+    const video = hero.querySelector(".hero-video");
+    const cue = hero.querySelector("[data-hero-next]");
+    const logo = hero.querySelector(".hero-logo");
+
+    if (!heroMedia) {
+      setHomeReady();
+      return;
+    }
+
+    function resetHeroVisualState() {
+      clearHomeReady();
+      heroMedia.classList.remove("video-ready");
+
+      if (video) {
+        try {
+          video.pause();
+        } catch (_) {}
+      }
+
+      if (logo) {
+        logo.style.willChange = "opacity";
+      }
+
+      if (cue) {
+        cue.style.willChange = "opacity, transform";
+      }
+    }
+
+    function revealStillOnly() {
+      setHomeReady();
+    }
+
+    function revealVideo() {
+      heroMedia.classList.add("video-ready");
+      setHomeReady();
+
+      if (video && !reduceMotion) {
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {
+            // still image remains the fallback
+          });
+        }
+      }
+    }
+
+    function bootHeroMedia() {
+      resetHeroVisualState();
+
+      if (!video || reduceMotion) {
+        revealStillOnly();
+        return;
+      }
+
+      if (video.readyState >= 3) {
+        revealVideo();
+        return;
+      }
+
+      const onCanPlay = () => {
+        revealVideo();
+      };
+
+      video.addEventListener("canplay", onCanPlay, { once: true });
+
+      window.setTimeout(() => {
+        if (!heroMedia.classList.contains("video-ready")) {
+          revealStillOnly();
+        }
+      }, 1200);
+
+      try {
+        video.load();
+      } catch (_) {
+        revealStillOnly();
+      }
+    }
+
+    bootHeroMedia();
+
+    window.addEventListener("pageshow", () => {
+      bootHeroMedia();
+    });
+  }
+
+  /* =========================================================
+     HERO FADE ON SCROLL
+     Keeps your original scroll fade/lift logic.
+     ========================================================= */
 
   function initHeroFade() {
     if (!hero) return;
@@ -53,6 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const update = () => {
       raf = 0;
+
+      if (hero.style.display === "none") return;
 
       const rect = hero.getBoundingClientRect();
       const heroH = Math.max(rect.height, window.innerHeight);
@@ -76,11 +219,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", update, { passive: true });
+    window.addEventListener("pageshow", update);
     update();
   }
 
+  /* =========================================================
+     MOBILE NAV
+     Keeps your original logic and adds outside-click close.
+     ========================================================= */
+
   function initMobileNav() {
     if (!burger || !nav) return;
+
+    const closeNav = () => {
+      body.classList.remove("nav-open");
+      burger.setAttribute("aria-expanded", "false");
+    };
 
     burger.addEventListener("click", () => {
       const open = body.classList.toggle("nav-open");
@@ -89,11 +243,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     nav.addEventListener("click", (e) => {
       if (e.target.closest("a")) {
-        body.classList.remove("nav-open");
-        burger.setAttribute("aria-expanded", "false");
+        closeNav();
       }
     });
+
+    document.addEventListener("click", (e) => {
+      const clickedBurger = burger.contains(e.target);
+      const clickedNav = nav.contains(e.target);
+
+      if (!clickedBurger && !clickedNav && body.classList.contains("nav-open")) {
+        closeNav();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 820) closeNav();
+    });
   }
+
+  /* =========================================================
+     REVEALS
+     Keeps your original logic.
+     ========================================================= */
 
   function initReveal() {
     const revealNodes = document.querySelectorAll("[data-reveal]");
@@ -117,13 +288,29 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     revealNodes.forEach((n) => revealIO.observe(n));
+
+    window.addEventListener("pageshow", () => {
+      revealNodes.forEach((n) => n.classList.add("is-in"));
+    });
   }
+
+  /* =========================================================
+     TESTIMONIALS
+     Keeps your autoplay + manual controls logic,
+     but supports either .t-next/.t-prev or .next/.prev variants.
+     ========================================================= */
 
   function initTestimonials() {
     const track = document.querySelector(".t-track");
     const slides = Array.from(document.querySelectorAll(".t-slide"));
-    const next = document.querySelector(".t-next");
-    const prev = document.querySelector(".t-prev");
+    const next =
+      document.querySelector(".t-next") ||
+      document.querySelector(".t-arrow.next") ||
+      document.querySelector(".t-arrow[data-next]");
+    const prev =
+      document.querySelector(".t-prev") ||
+      document.querySelector(".t-arrow.prev") ||
+      document.querySelector(".t-arrow[data-prev]");
 
     if (!track || !slides.length) return;
 
@@ -166,12 +353,21 @@ document.addEventListener("DOMContentLoaded", () => {
         restartAuto();
       });
     }
+
+    window.addEventListener("resize", update, { passive: true });
+    update();
   }
+
+  /* =========================================================
+     HERO COLLAPSE
+     Keeps your original “dismiss hero into about” behavior,
+     but removes the old video blending logic since the new
+     hero stabilization now handles video/still state.
+     ========================================================= */
 
   function initHeroCollapse() {
     const heroEl = document.querySelector("[data-hero]");
     const aboutEl = document.getElementById("about");
-    const video = heroEl?.querySelector(".hero-video");
     const cue = heroEl?.querySelector("[data-hero-next]");
     const navBrand = document.querySelector(".nav-brand");
     const aboutLink = document.querySelector('.site-nav a[href="#about"]');
@@ -192,54 +388,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let animating = false;
     let touchStartY = null;
 
-    const getHeaderOffset = () => {
-      const headerEl = document.querySelector(".site-header");
-      return headerEl ? headerEl.offsetHeight : 0;
-    };
-
     const getAboutTop = () => {
       return Math.max(
         0,
         window.scrollY + aboutEl.getBoundingClientRect().top - getHeaderOffset()
       );
     };
-
-    if (video) {
-      const showStill = () => heroEl.classList.add("is-still");
-      const startStillBlend = () => heroEl.classList.add("is-blending");
-
-      let blendStarted = false;
-      let videoStarted = false;
-
-      const onTimeUpdate = () => {
-        videoStarted = true;
-        if (blendStarted) return;
-        if (!video.duration || !isFinite(video.duration)) return;
-
-        const blendLead = 3;
-        if (video.currentTime >= video.duration - blendLead) {
-          blendStarted = true;
-          startStillBlend();
-        }
-      };
-
-      video.addEventListener("timeupdate", onTimeUpdate);
-      video.addEventListener("playing", () => {
-        videoStarted = true;
-      });
-      video.addEventListener("ended", showStill);
-
-      video.play().catch(() => {
-        console.warn("Hero video autoplay failed.");
-      });
-
-      setTimeout(() => {
-        if (!videoStarted) {
-          startStillBlend();
-          showStill();
-        }
-      }, 2500);
-    }
 
     const easeInOutCubic = (t) =>
       t < 0.5
@@ -330,6 +484,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sessionStorage.getItem(HERO_DISMISSED_KEY) === "1") {
       heroDismissed = true;
       heroEl.style.display = "none";
+      clearHomeReady();
+      setHomeReady();
     }
 
     cue?.addEventListener("click", dismissHeroIntoAbout);
@@ -392,9 +548,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* =========================================================
+     CAPABILITIES
+     Keeps your original logic.
+     ========================================================= */
+
   function initCapabilities() {
-    const stack = document.querySelector("[data-capabilities-stack]");
-    const cards = Array.from(document.querySelectorAll("[data-cap-card]"));
+    const stack =
+      document.querySelector("[data-capabilities-stack]") ||
+      document.querySelector(".capabilities-stack");
+
+    const cards = Array.from(
+      document.querySelectorAll("[data-cap-card], .cap-card")
+    );
+
     const cue = document.querySelector(".capabilities-scroll-cue");
     const title = document.querySelector(".capabilities-title");
 
@@ -453,15 +620,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     stack.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update, { passive: true });
+    window.addEventListener("pageshow", update);
     update();
   }
+
+  /* =========================================================
+     PAGE TRANSITIONS
+     Keeps your original logic.
+     ========================================================= */
 
   function initPageTransitions() {
     document.body.classList.add("is-entering");
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        document.body.classList.remove("is-entering");
+        setBodyReady();
       });
     });
 
@@ -501,6 +674,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  /* =========================================================
+     INQUIRY FORM
+     Keeps your original submission logic.
+     ========================================================= */
 
   function initInquiryForm() {
     const form = document.getElementById("inquiry-form");
@@ -563,44 +741,56 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-function initLazyVideos() {
-  const videos = Array.from(document.querySelectorAll("video"));
-  if (!videos.length) return;
 
-  const io = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+  /* =========================================================
+     LAZY VIDEOS
+     Keeps your original logic.
+     ========================================================= */
 
-      const video = entry.target;
-      const sources = Array.from(video.querySelectorAll("source[data-src]"));
+  function initLazyVideos() {
+    const videos = Array.from(document.querySelectorAll("video"));
+    if (!videos.length) return;
 
-      if (sources.length) {
-        sources.forEach((source) => {
-          source.src = source.dataset.src;
-          source.removeAttribute("data-src");
-        });
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
 
-        video.load();
+        const video = entry.target;
+        const sources = Array.from(video.querySelectorAll("source[data-src]"));
 
-        if (video.autoplay) {
-          video.play().catch(() => {});
+        if (sources.length) {
+          sources.forEach((source) => {
+            source.src = source.dataset.src;
+            source.removeAttribute("data-src");
+          });
+
+          video.load();
+
+          if (video.autoplay) {
+            video.play().catch(() => {});
+          }
         }
-      }
 
-      observer.unobserve(video);
+        observer.unobserve(video);
+      });
+    }, {
+      rootMargin: "200px 0px"
     });
-  }, {
-    rootMargin: "200px 0px"
-  });
 
-  videos.forEach((video) => {
-    if (video.querySelector("source[data-src]")) {
-      io.observe(video);
-    }
-  });
-}
+    videos.forEach((video) => {
+      if (video.querySelector("source[data-src]")) {
+        io.observe(video);
+      }
+    });
+  }
+
+  /* =========================================================
+     INIT
+     ========================================================= */
+
   initYear();
   initHeader();
+  initHeroMedia();
   initHeroFade();
   initMobileNav();
   initHeroCollapse();
