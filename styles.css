@@ -328,7 +328,10 @@ body.nav-open .nav-toggle span:last-child{
   opacity:1;
   visibility:visible;
   transform:scale(1.01);
-  transition:opacity 900ms var(--ease), visibility 900ms var(--ease), transform 1400ms var(--ease);
+  transition:
+    opacity 900ms var(--ease),
+    visibility 900ms var(--ease),
+    transform 1400ms var(--ease);
   will-change:opacity, transform;
 }
 
@@ -662,29 +665,6 @@ body.home-ready .hero-scroll-cue{
 [data-reveal].is-in{
   opacity:1;
   transform:translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior:auto; }
-
-  [data-reveal]{
-    opacity:1 !important;
-    transform:none !important;
-    transition:none !important;
-  }
-
-  .hero-video,
-  .hero-still,
-  .hero-logo,
-  .hero-scroll-cue,
-  .next-steps::before,
-  body,
-  .site-header,
-  .site-nav,
-  .btn{
-    transition:none !important;
-    animation:none !important;
-  }
 }
 
 /* =====================================================
@@ -1485,4 +1465,36 @@ body.is-ready{
 
 body.is-leaving{
   opacity:0;
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+
+  [data-reveal]{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+  }
+
+  .hero-video,
+  .hero-still,
+  .hero-logo,
+  .hero-scroll-cue,
+  .next-steps::before,
+  body,
+  .site-header,
+  .site-nav,
+  .btn,
+  .t-track,
+  .client-img,
+  .cap-card,
+  .capabilities-title,
+  .capabilities-scroll-cue{
+    transition:none !important;
+    animation:none !important;
+  }
 }
