@@ -93,93 +93,113 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   function initHeroMedia() {
-    if (!hero) return;
+  if (!hero) return;
 
-    const heroMedia = hero.querySelector(".hero-media");
-    const video = hero.querySelector(".hero-video");
-    const cue = hero.querySelector("[data-hero-next]");
-    const logo = hero.querySelector(".hero-logo");
+  const heroMedia = hero.querySelector(".hero-media");
+  const video = hero.querySelector(".hero-video");
 
-    if (!heroMedia) {
-      setHomeReady();
+  if (!heroMedia) {
+    setHomeReady();
+    return;
+  }
+
+  function resetHeroVisualState() {
+    clearHomeReady();
+    heroMedia.classList.remove("video-ready");
+    hero.classList.remove("is-still", "is-blending");
+
+    if (video) {
+      try {
+        video.pause();
+        video.currentTime = 0;
+      } catch (_) {}
+    }
+  }
+
+  function revealStillOnly() {
+    setHomeReady();
+  }
+
+  function revealVideo() {
+    heroMedia.classList.add("video-ready");
+    setHomeReady();
+  }
+
+  function bootHeroMedia() {
+    resetHeroVisualState();
+
+    if (!video || reduceMotion) {
+      revealStillOnly();
       return;
     }
 
-    function resetHeroVisualState() {
-      clearHomeReady();
-      heroMedia.classList.remove("video-ready");
+    let readyShown = false;
+    let blendStarted = false;
 
-      if (video) {
-        try {
-          video.pause();
-        } catch (_) {}
-      }
+    const markReady = () => {
+      if (readyShown) return;
+      readyShown = true;
+      revealVideo();
+    };
 
-      if (logo) {
-        logo.style.willChange = "opacity";
-      }
+    const startStillBlend = () => {
+      if (blendStarted) return;
+      blendStarted = true;
+      hero.classList.add("is-blending");
+    };
 
-      if (cue) {
-        cue.style.willChange = "opacity, transform";
-      }
-    }
+    const showStill = () => {
+      hero.classList.add("is-still");
+    };
 
-    function revealStillOnly() {
-      setHomeReady();
-    }
-
-    function revealVideo() {
-      heroMedia.classList.add("video-ready");
-      setHomeReady();
-
-      if (video && !reduceMotion) {
-        const playPromise = video.play();
-        if (playPromise && typeof playPromise.catch === "function") {
-          playPromise.catch(() => {
-            // still image remains the fallback
-          });
-        }
-      }
-    }
-
-    function bootHeroMedia() {
-      resetHeroVisualState();
-
-      if (!video || reduceMotion) {
-        revealStillOnly();
-        return;
-      }
-
-      if (video.readyState >= 3) {
-        revealVideo();
-        return;
-      }
-
-      const onCanPlay = () => {
-        revealVideo();
-      };
-
-      video.addEventListener("canplay", onCanPlay, { once: true });
-
-      window.setTimeout(() => {
-        if (!heroMedia.classList.contains("video-ready")) {
+    const tryPlay = () => {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
           revealStillOnly();
-        }
-      }, 1200);
+        });
+      }
+    };
 
-      try {
-        video.load();
-      } catch (_) {
+    video.addEventListener("loadeddata", markReady, { once: true });
+    video.addEventListener("playing", markReady, { once: true });
+    video.addEventListener("loadedmetadata", tryPlay, { once: true });
+    video.addEventListener("canplay", tryPlay, { once: true });
+
+    video.addEventListener("timeupdate", () => {
+      if (!video.duration || !isFinite(video.duration)) return;
+
+      const blendLead = 1.2;
+      if (video.currentTime >= video.duration - blendLead) {
+        startStillBlend();
+      }
+    });
+
+    video.addEventListener("ended", () => {
+      showStill();
+    });
+
+    // fallback only if video truly never becomes ready
+    window.setTimeout(() => {
+      if (!heroMedia.classList.contains("video-ready")) {
         revealStillOnly();
       }
+    }, 2200);
+
+    try {
+      video.load();
+      tryPlay();
+    } catch (_) {
+      revealStillOnly();
     }
-
-    bootHeroMedia();
-
-    window.addEventListener("pageshow", () => {
-      bootHeroMedia();
-    });
   }
+
+  bootHeroMedia();
+
+  window.addEventListener("pageshow", () => {
+    bootHeroMedia();
+  });
+}
 
   /* =========================================================
      HERO FADE ON SCROLL
