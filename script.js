@@ -223,42 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
     update();
   }
 
-    if (video) {
-    const showStill = () => heroEl.classList.add("is-still");
-    const startStillBlend = () => heroEl.classList.add("is-blending");
-    const markReady = () => {
-      heroEl.querySelector(".hero-media")?.classList.add("video-ready");
-      document.body.classList.add("home-ready");
-    };
-    const tryPlay = () => {
-      video.play().catch((err) => {
-        console.warn("Hero video autoplay failed:", err);
-      });
-    };
-
-    let blendStarted = false;
-
-    video.addEventListener("loadeddata", markReady);
-    video.addEventListener("playing", markReady);
-    video.addEventListener("canplay", tryPlay);
-    video.addEventListener("loadedmetadata", tryPlay);
-
-    video.addEventListener("timeupdate", () => {
-      if (blendStarted) return;
-      if (!video.duration || !isFinite(video.duration)) return;
-
-      const blendLead = 3;
-      if (video.currentTime >= video.duration - blendLead) {
-        blendStarted = true;
-        startStillBlend();
-      }
-    });
-
-    video.addEventListener("ended", showStill);
-
-    tryPlay();
-  }
-
   /* =========================================================
      MOBILE NAV
      Keeps your original logic and adds outside-click close.
