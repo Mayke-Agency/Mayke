@@ -93,19 +93,65 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   function initHeroMedia() {
-    if (!hero) return;
+  if (!hero) return;
 
-    const heroMedia = hero.querySelector(".hero-media");
-    const video = hero.querySelector(".hero-video");
-    const cue = hero.querySelector("[data-hero-next]");
-    const logo = hero.querySelector(".hero-logo");
+  const heroMedia = hero.querySelector(".hero-media");
+  const video = hero.querySelector(".hero-video");
 
-    if (!heroMedia) {
-      setHomeReady();
+  if (!heroMedia) {
+    setHomeReady();
+    return;
+  }
+
+  function resetHeroVisualState() {
+    clearHomeReady();
+    heroMedia.classList.remove("video-ready");
+    hero.classList.remove("is-still", "is-blending");
+
+    if (video) {
+      try {
+        video.pause();
+        video.currentTime = 0;
+      } catch (_) {}
+    }
+  }
+
+  function revealStillOnly() {
+    hero.classList.add("is-still");
+    setHomeReady();
+  }
+
+  function revealVideo() {
+    heroMedia.classList.add("video-ready");
+    setHomeReady();
+
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        revealStillOnly();
+      });
+    }
+  }
+
+  function bootHeroMedia() {
+    resetHeroVisualState();
+
+    if (!video || reduceMotion) {
+      revealStillOnly();
       return;
     }
 
     let blendStarted = false;
+    let readyShown = false;
+
+    const markReady = () => {
+      if (readyShown) return;
+      readyShown = true;
+      revealVideo();
+    };
+
+    video.addEventListener("loadeddata", markReady, { once: true });
+    video.addEventListener("canplay", markReady, { once: true });
 
     video.addEventListener("timeupdate", () => {
       if (!video.duration || !isFinite(video.duration)) return;
@@ -118,85 +164,32 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-video.addEventListener("ended", () => {
-  hero.classList.add("is-still");
-});
-
-    function resetHeroVisualState() {
-      clearHomeReady();
-      heroMedia.classList.remove("video-ready");
-
-      if (video) {
-        try {
-          video.pause();
-        } catch (_) {}
-      }
-
-      if (logo) {
-        logo.style.willChange = "opacity";
-      }
-
-      if (cue) {
-        cue.style.willChange = "opacity, transform";
-      }
-    }
-
-    function revealStillOnly() {
-      setHomeReady();
-    }
-
-    function revealVideo() {
-      heroMedia.classList.add("video-ready");
-      setHomeReady();
-
-      if (video && !reduceMotion) {
-        const playPromise = video.play();
-        if (playPromise && typeof playPromise.catch === "function") {
-          playPromise.catch(() => {
-            // still image remains the fallback
-          });
-        }
-      }
-    }
-
-    function bootHeroMedia() {
-      resetHeroVisualState();
-
-      if (!video || reduceMotion) {
-        revealStillOnly();
-        return;
-      }
-
-      if (video.readyState >= 3) {
-        revealVideo();
-        return;
-      }
-
-      const onCanPlay = () => {
-        revealVideo();
-      };
-
-      video.addEventListener("canplay", onCanPlay, { once: true });
-
-      window.setTimeout(() => {
-        if (!heroMedia.classList.contains("video-ready")) {
-          revealStillOnly();
-        }
-      }, 1200);
-
-      try {
-        video.load();
-      } catch (_) {
-        revealStillOnly();
-      }
-    }
-
-    bootHeroMedia();
-
-    window.addEventListener("pageshow", () => {
-      bootHeroMedia();
+    video.addEventListener("ended", () => {
+      hero.classList.add("is-still");
     });
+
+    window.setTimeout(() => {
+      if (!heroMedia.classList.contains("video-ready")) {
+        revealStillOnly();
+      }
+    }, 1600);
+
+    try {
+      video.load();
+      video.play().catch(() => {
+        revealStillOnly();
+      });
+    } catch (_) {
+      revealStillOnly();
+    }
   }
+
+  bootHeroMedia();
+
+  window.addEventListener("pageshow", () => {
+    bootHeroMedia();
+  });
+}
 
   /* =========================================================
      HERO FADE ON SCROLL
