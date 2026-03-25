@@ -297,7 +297,7 @@ body.nav-open .nav-toggle span:last-child{
   content:"";
   position:absolute;
   inset:0;
-  z-index:2;
+  z-index:3;
   background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.42));
   pointer-events:none;
 }
@@ -312,43 +312,52 @@ body.nav-open .nav-toggle span:last-child{
 
 .hero-video{
   object-fit:cover;
-  z-index:1;
+  z-index:2;
   display:block;
   opacity:0;
-  visibility:hidden;
-  transition:opacity 900ms var(--ease), visibility 900ms var(--ease);
+  transition:opacity 700ms var(--ease);
   will-change:opacity;
+  background:#000;
 }
 
 .hero-still{
-  z-index:0;
+  z-index:1;
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
   opacity:1;
-  visibility:visible;
   transform:scale(1.01);
-  transition:
-    opacity 900ms var(--ease),
-    visibility 900ms var(--ease),
-    transform 1400ms var(--ease);
+  transition:opacity 700ms var(--ease), transform 1400ms var(--ease);
   will-change:opacity, transform;
 }
 
 .hero-media.video-ready .hero-video{
   opacity:1;
-  visibility:visible;
 }
 
 .hero-media.video-ready .hero-still{
   opacity:0;
-  visibility:hidden;
   transform:scale(1);
+}
+
+/* Safari / iOS video controls */
+.hero-video::-webkit-media-controls{
+  display:none !important;
+}
+
+.hero-video::-webkit-media-controls-start-playback-button{
+  display:none !important;
+  -webkit-appearance:none;
+}
+
+/* Prevent odd inline video UI behavior on iOS */
+.hero-video::-webkit-media-controls-panel{
+  display:none !important;
 }
 
 .hero-inner{
   position:relative;
-  z-index:3;
+  z-index:4;
   height:100%;
 }
 
@@ -384,7 +393,7 @@ body.home-ready .hero-logo{
   cursor:pointer;
   opacity:0;
   transition:opacity 500ms ease, transform 220ms ease;
-  z-index:4;
+  z-index:5;
 }
 
 body.home-ready .hero-scroll-cue{
