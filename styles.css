@@ -410,23 +410,6 @@ body.home-ready .hero-scroll-cue{
   outline-offset:4px;
 }
 
-.hero.is-blending .hero-video{
-  opacity: 0.08;
-}
-
-.hero.is-blending .hero-still{
-  opacity: 1;
-  transform: scale(1);
-}
-
-.hero.is-still .hero-video{
-  opacity: 0;
-}
-
-.hero.is-still .hero-still{
-  opacity: 1;
-  transform: scale(1);
-}
 
 /* =====================================================
    ABOUT
