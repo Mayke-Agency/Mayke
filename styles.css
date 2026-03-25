@@ -1526,3 +1526,7 @@ body.is-leaving{
     animation:none !important;
   }
 }
+
+body[data-js-live="yes"]{
+  outline: 6px solid red;
+}

@@ -3,6 +3,8 @@
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("NEW SCRIPT IS RUNNING");
+  document.body.setAttribute("data-js-live", "yes");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const body = document.body;
 
