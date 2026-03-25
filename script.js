@@ -105,6 +105,23 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    let blendStarted = false;
+
+    video.addEventListener("timeupdate", () => {
+      if (!video.duration || !isFinite(video.duration)) return;
+      if (blendStarted) return;
+
+      const blendLead = 1.2;
+      if (video.currentTime >= video.duration - blendLead) {
+        blendStarted = true;
+        hero.classList.add("is-blending");
+      }
+    });
+
+video.addEventListener("ended", () => {
+  hero.classList.add("is-still");
+});
+
     function resetHeroVisualState() {
       clearHomeReady();
       heroMedia.classList.remove("video-ready");
