@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroMedia = hero.querySelector(".hero-media");
     const video = hero.querySelector(".hero-video");
 
-    if (!heroMedia) {
+    if (!heroMedia || !video) {
       setHomeReady();
       return;
     }
@@ -110,6 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let blendStarted = false;
     let playbackConfirmed = false;
     let fallbackTimer = null;
+    let started = false;
+
+    function clearFallback() {
+      if (fallbackTimer) {
+        clearTimeout(fallbackTimer);
+        fallbackTimer = null;
+      }
+    }
 
     function resetHeroVisualState() {
       clearHomeReady();
@@ -118,24 +126,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       blendStarted = false;
       playbackConfirmed = false;
+      started = false;
+      clearFallback();
 
-      if (fallbackTimer) {
-        clearTimeout(fallbackTimer);
-        fallbackTimer = null;
-      }
-
-      if (video) {
-        try {
-          video.pause();
-          if (video.readyState > 0) {
-            video.currentTime = 0;
-          }
-        } catch (_) {}
-      }
+      try {
+        video.pause();
+        if (video.readyState > 0 && video.currentTime > 0) {
+          video.currentTime = 0;
+        }
+      } catch (_) {}
     }
 
     function revealStillOnly() {
       heroMedia.classList.remove("video-ready");
+      hero.classList.remove("is-blending");
       hero.classList.add("is-still");
       setHomeReady();
     }
@@ -146,59 +150,77 @@ document.addEventListener("DOMContentLoaded", () => {
       setHomeReady();
     }
 
+    function startPlayback() {
+      if (started) return;
+      started = true;
+
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          revealStillOnly();
+        });
+      }
+    }
+
     function bootHeroMedia() {
       resetHeroVisualState();
 
-      if (!video || reduceMotion) {
+      if (reduceMotion) {
         revealStillOnly();
         return;
       }
 
-      const tryPlay = () => {
-        const playPromise = video.play();
-        if (playPromise && typeof playPromise.catch === "function") {
-          playPromise.catch(() => {
-            revealStillOnly();
-          });
-        }
-      };
+      if (video.readyState >= 4) {
+        startPlayback();
+      } else {
+        video.addEventListener(
+          "canplaythrough",
+          () => {
+            startPlayback();
+          },
+          { once: true },
+        );
 
-      fallbackTimer = window.setTimeout(() => {
-        if (!playbackConfirmed) {
-          revealStillOnly();
-        }
-      }, 1800);
-
-      tryPlay();
+        fallbackTimer = window.setTimeout(() => {
+          if (!playbackConfirmed) {
+            startPlayback();
+          }
+        }, 1800);
+      }
     }
 
-    if (video) {
-      video.addEventListener("playing", () => {
+    video.addEventListener(
+      "playing",
+      () => {
+        if (playbackConfirmed) return;
         playbackConfirmed = true;
+        clearFallback();
         revealVideo();
-      });
+      },
+      { once: true },
+    );
 
-      video.addEventListener("timeupdate", () => {
-        if (!video.duration || !isFinite(video.duration)) return;
-        if (blendStarted) return;
+    video.addEventListener("timeupdate", () => {
+      if (!video.duration || !isFinite(video.duration)) return;
+      if (blendStarted) return;
 
-        const blendLead = Math.max(2.8, video.duration * 0.38);
+      const blendLead = Math.max(2.8, video.duration * 0.38);
 
-        if (video.currentTime >= video.duration - blendLead) {
-          blendStarted = true;
-          hero.classList.add("is-blending");
-        }
-      });
+      if (video.currentTime >= video.duration - blendLead) {
+        blendStarted = true;
+        hero.classList.add("is-blending");
+      }
+    });
 
-      video.addEventListener("ended", () => {
-        hero.classList.remove("is-blending");
-        revealStillOnly();
-      });
+    video.addEventListener("ended", () => {
+      hero.classList.remove("is-blending");
+      revealStillOnly();
+    });
 
-      video.addEventListener("error", () => {
-        revealStillOnly();
-      });
-    }
+    video.addEventListener("error", () => {
+      clearFallback();
+      revealStillOnly();
+    });
 
     bootHeroMedia();
   }
