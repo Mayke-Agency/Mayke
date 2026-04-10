@@ -1,145 +1,159 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<title>Capabilities — Mayke</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <title>Capabilities — Mayke</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="stylesheet" href="styles.css?v=1" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css?v=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="nav-brand" href="index.html">
+          <img class="nav-logo" src="assets/maykeLogoDark.svg" alt="Mayke" />
+        </a>
 
-<header class="site-header" data-header>
-  <div class="container header-inner">
+        <button
+          class="nav-toggle"
+          data-burger
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span>
+        </button>
 
-    <a class="nav-brand" href="index.html">
-      <img class="nav-logo" src="assets/maykeLogoDark.svg" alt="Mayke">
-    </a>
+        <nav class="site-nav">
+          <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="capabilities.html">Capabilities</a></li>
+            <li><a href="clients.html">Portfolio</a></li>
+            <li><a href="inquiry.html">Work with us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-    <button class="nav-toggle" data-burger aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
+    <main>
+      <section class="capabilities-split">
+        <div class="capabilities-inner">
+          <!-- LEFT SIDE VIDEO -->
+          <div class="capabilities-media">
+            <video
+              class="capabilities-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            >
+              <source src="assets/capabilities-video.mp4" type="video/mp4" />
+            </video>
+          </div>
 
-    <nav class="site-nav">
-      <ul>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="capabilities.html">Capabilities</a></li>
-        <li><a href="clients.html">Portfolio</a></li>
-        <li><a href="inquiry.html">Work with us</a></li>
-      </ul>
-    </nav>
+          <!-- RIGHT TEXT -->
+          <div class="capabilities-copy">
+            <div class="capabilities-copy-inner">
+              <h2 class="section-kicker capabilities-kicker capabilities-title">
+                Capabilities
+              </h2>
 
-  </div>
-</header>
+              <div class="capabilities-stack" data-capabilities-stack>
+                <article class="cap-card is-active" data-cap-card>
+                  <h3>Strategy</h3>
+                  <ul>
+                    <li>Brand strategy</li>
+                    <li>Positioning</li>
+                    <li>Marketing strategy</li>
+                    <li>Social strategy</li>
+                  </ul>
+                </article>
 
-<main>
+                <article class="cap-card" data-cap-card>
+                  <h3>Identity</h3>
+                  <ul>
+                    <li>Naming</li>
+                    <li>Brand voice</li>
+                    <li>Visual identity systems</li>
+                    <li>Brand guidelines</li>
+                  </ul>
+                </article>
 
-<section class="capabilities-split">
-  <div class="capabilities-inner">
+                <article class="cap-card" data-cap-card>
+                  <h3>Digital</h3>
+                  <ul>
+                    <li>Website strategy</li>
+                    <li>UX/UI</li>
+                    <li>Web design</li>
+                    <li>Shopify development</li>
+                    <li>Graphics</li>
+                  </ul>
+                </article>
 
-    <!-- LEFT SIDE VIDEO -->
-    <div class="capabilities-media">
-      <video
-        class="capabilities-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-      >
-        <source src="assets/capabilities-video.mp4" type="video/mp4">
-      </video>
-    </div>
+                <article class="cap-card" data-cap-card>
+                  <h3>Creative Production</h3>
+                  <ul>
+                    <li>Campaign concepts</li>
+                    <li>Photography and video production</li>
+                    <li>UGC</li>
+                  </ul>
+                </article>
 
-    <!-- RIGHT TEXT -->
-    <div class="capabilities-copy">
-      <div class="capabilities-copy-inner">
-        <h2 class="section-kicker capabilities-kicker capabilities-title">Capabilities</h2>
+                <article class="cap-card" data-cap-card>
+                  <h3>Experiential & Partnerships</h3>
+                  <ul>
+                    <li>Events</li>
+                    <li>Influencer partnerships</li>
+                    <li>Talent casting</li>
+                  </ul>
+                </article>
+              </div>
 
-        <div class="capabilities-stack" data-capabilities-stack>
-          <article class="cap-card is-active" data-cap-card>
-            <h3>Strategy</h3>
-            <ul>
-              <li>Brand strategy</li>
-              <li>Positioning</li>
-              <li>Marketing strategy</li>
-              <li>Social strategy</li>
-            </ul>
-          </article>
+              <div class="capabilities-scroll-cue" aria-hidden="true">↓</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-          <article class="cap-card" data-cap-card>
-            <h3>Identity</h3>
-            <ul>
-              <li>Naming</li>
-              <li>Brand voice</li>
-              <li>Visual identity systems</li>
-              <li>Brand guidelines</li>
-            </ul>
-          </article>
-
-          <article class="cap-card" data-cap-card>
-            <h3>Digital</h3>
-            <ul>
-              <li>Website strategy</li>
-              <li>UX/UI</li>
-              <li>Web design</li>
-              <li>Shopify development</li>
-              <li>Graphics</li>
-            </ul>
-          </article>
-
-          <article class="cap-card" data-cap-card>
-            <h3>Creative Production</h3>
-            <ul>
-              <li>Campaign concepts</li>
-              <li>Photography and video production</li>
-              <li>UGC</li>
-            </ul>
-          </article>
-
-          <article class="cap-card" data-cap-card>
-            <h3>Experiential & Partnerships</h3>
-            <ul>
-              <li>Events</li>
-              <li>Influencer partnerships</li>
-              <li>Talent casting</li>
-            </ul>
-          </article>
+    <footer class="site-footer">
+      <div class="container foot">
+        <div class="foot-brand">
+          <img
+            class="foot-logo"
+            src="assets/maykeLogoDark.svg"
+            alt="Mayke logo"
+          />
         </div>
 
-        <div class="capabilities-scroll-cue" aria-hidden="true">↓</div>
+        <nav aria-label="Social" class="foot-social">
+          <a
+            href="https://instagram.com/YOURHANDLE"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          ></a>
+          <a
+            href="https://tiktok.com/@YOURHANDLE"
+            target="_blank"
+            rel="noopener"
+            aria-label="TikTok"
+          ></a>
+          <a href="mailto:alan@maykeagency.com" aria-label="Email"></a>
+        </nav>
+
+        <div class="foot-meta">© <span id="year"></span> Mayke</div>
       </div>
-    </div>
+    </footer>
 
-  </div>
-</section>
-
-</main>
-
-<footer class="site-footer">
-    <div class="container foot">
-
-      <div class="foot-brand">
-        <img class="foot-logo" src="assets/maykeLogoDark.svg" alt="Mayke logo" />
-      </div>
-
-      <nav aria-label="Social" class="foot-social">
-        <a href="https://instagram.com/YOURHANDLE" target="_blank" rel="noopener" aria-label="Instagram"></a>
-        <a href="https://tiktok.com/@YOURHANDLE" target="_blank" rel="noopener" aria-label="TikTok"></a>
-        <a href="mailto:alan@maykeagency.com" aria-label="Email"></a>
-      </nav>
-
-      <div class="foot-meta">© <span id="year"></span> Mayke</div>
-
-    </div>
-  </footer>
-
-<script src="script.js?v=1"></script>
-
-</body>
+    <script src="script.js?v=1"></script>
+  </body>
 </html>

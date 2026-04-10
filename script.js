@@ -3,8 +3,6 @@
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("NEW SCRIPT IS RUNNING");
-  document.body.setAttribute("data-js-live", "yes");
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
@@ -57,8 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      HEADER
-     Keeps your original about-based visibility logic,
-     plus solid background state after scrolling.
      ========================================================= */
 
   function initHeader() {
@@ -97,9 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================================================
-     HERO MEDIA STABILIZATION
-     New: still image is the first state, video only fades in
-     when ready, and back navigation re-inits cleanly.
+     HERO MEDIA
      ========================================================= */
 
   function initHeroMedia() {
@@ -113,10 +107,22 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    let blendStarted = false;
+    let playbackConfirmed = false;
+    let fallbackTimer = null;
+
     function resetHeroVisualState() {
       clearHomeReady();
       heroMedia.classList.remove("video-ready");
-      hero.classList.remove("is-still", "is-blending");
+      hero.classList.remove("is-blending", "is-still");
+
+      blendStarted = false;
+      playbackConfirmed = false;
+
+      if (fallbackTimer) {
+        clearTimeout(fallbackTimer);
+        fallbackTimer = null;
+      }
 
       if (video) {
         try {
@@ -136,13 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hero.classList.remove("is-still");
       heroMedia.classList.add("video-ready");
       setHomeReady();
-
-      const playPromise = video.play();
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {
-          revealStillOnly();
-        });
-      }
     }
 
     function bootHeroMedia() {
@@ -153,28 +152,43 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      let blendStarted = false;
-      let readyShown = false;
-
-      const markReady = () => {
-        if (readyShown) return;
-        readyShown = true;
-        revealVideo();
+      const tryPlay = () => {
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {
+            revealStillOnly();
+          });
+        }
       };
 
-      video.addEventListener(
-        "playing",
-        () => {
-          markReady();
-        },
-        { once: true },
-      );
+      try {
+        video.load();
+      } catch (_) {
+        revealStillOnly();
+        return;
+      }
+
+      fallbackTimer = window.setTimeout(() => {
+        if (!playbackConfirmed) {
+          revealStillOnly();
+        }
+      }, 1800);
+
+      tryPlay();
+    }
+
+    if (video) {
+      video.addEventListener("playing", () => {
+        playbackConfirmed = true;
+        revealVideo();
+      });
 
       video.addEventListener("timeupdate", () => {
         if (!video.duration || !isFinite(video.duration)) return;
         if (blendStarted) return;
 
-        const blendLead = Math.max(3.5, video.duration * 0.45);
+        const blendLead = Math.max(3.6, video.duration * 0.45);
+
         if (video.currentTime >= video.duration - blendLead) {
           blendStarted = true;
           hero.classList.add("is-blending");
@@ -182,23 +196,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       video.addEventListener("ended", () => {
-        hero.classList.add("is-still");
+        hero.classList.remove("is-blending");
+        revealStillOnly();
       });
 
-      window.setTimeout(() => {
-        if (!heroMedia.classList.contains("video-ready")) {
-          revealStillOnly();
-        }
-      }, 1600);
-
-      try {
-        video.load();
-        video.play().catch(() => {
-          revealStillOnly();
-        });
-      } catch (_) {
+      video.addEventListener("error", () => {
         revealStillOnly();
-      }
+      });
     }
 
     bootHeroMedia();
@@ -210,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      HERO FADE ON SCROLL
-     Keeps your original scroll fade/lift logic.
      ========================================================= */
 
   function initHeroFade() {
@@ -252,7 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      MOBILE NAV
-     Keeps your original logic and adds outside-click close.
      ========================================================= */
 
   function initMobileNav() {
@@ -294,7 +296,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      REVEALS
-     Keeps your original logic.
      ========================================================= */
 
   function initReveal() {
@@ -323,8 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      TESTIMONIALS
-     Keeps your autoplay + manual controls logic,
-     but supports either .t-next/.t-prev or .next/.prev variants.
      ========================================================= */
 
   function initTestimonials() {
@@ -387,9 +386,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      HERO COLLAPSE
-     Keeps your original “dismiss hero into about” behavior,
-     but removes the old video blending logic since the new
-     hero stabilization now handles video/still state.
      ========================================================= */
 
   function initHeroCollapse() {
@@ -591,7 +587,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      CAPABILITIES
-     Keeps your original logic.
      ========================================================= */
 
   function initCapabilities() {
@@ -667,7 +662,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      PAGE TRANSITIONS
-     Keeps your original logic.
      ========================================================= */
 
   function initPageTransitions() {
@@ -718,7 +712,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      INQUIRY FORM
-     Keeps your original submission logic.
      ========================================================= */
 
   function initInquiryForm() {
@@ -786,7 +779,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      LAZY VIDEOS
-     Keeps your original logic.
      ========================================================= */
 
   function initLazyVideos() {

@@ -334,40 +334,7 @@ body.nav-open .nav-toggle span:last-child {
   object-fit: cover;
   z-index: 2;
   display: block;
-  opacity: 0; /* hidden until confirmed playing */
-  transition: opacity 700ms var(--ease);
-  will-change: opacity;
-  background: #000;
-}
-
-.hero-still {
-  z-index: 1;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 1; /* visible by default */
-  transform: scale(1.01);
-  transition:
-    opacity 700ms var(--ease),
-    transform 1400ms var(--ease);
-  will-change: opacity, transform;
-}
-
-/* video only takes over once it is truly ready */
-.hero-media.video-ready .hero-video {
-  opacity: 1;
-}
-
-.hero-media.video-ready .hero-still {
-  opacity: 0;
-  transform: scale(1);
-}
-
-.hero-video {
-  object-fit: cover;
-  z-index: 2;
-  display: block;
-  opacity: 0;
+  opacity: 0; /* hidden until real playback is confirmed */
   transition: opacity 1800ms var(--ease);
   will-change: opacity;
   background: #000;
@@ -378,25 +345,27 @@ body.nav-open .nav-toggle span:last-child {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 1;
-  transform: scale(1.04);
+  opacity: 1; /* visible by default for Safari/mobile fallback */
+  transform: scale(1.05);
   transition:
-    opacity 2200ms var(--ease),
-    transform 3200ms var(--ease);
+    opacity 2400ms var(--ease),
+    transform 3400ms var(--ease);
   will-change: opacity, transform;
 }
 
+/* show video only after actual playback begins */
 .hero-media.video-ready .hero-video {
   opacity: 1;
 }
 
 .hero-media.video-ready .hero-still {
   opacity: 0;
-  transform: scale(1.015);
+  transform: scale(1.02);
 }
 
+/* long dissolve near the end */
 .hero.is-blending .hero-video {
-  opacity: 0.35;
+  opacity: 0.22;
 }
 
 .hero.is-blending .hero-still {
@@ -404,6 +373,7 @@ body.nav-open .nav-toggle span:last-child {
   transform: scale(1);
 }
 
+/* final state after video ends */
 .hero.is-still .hero-video {
   opacity: 0;
 }
@@ -413,7 +383,7 @@ body.nav-open .nav-toggle span:last-child {
   transform: scale(1);
 }
 
-/* Safari / iOS video controls */
+/* Safari / iOS controls */
 .hero-video::-webkit-media-controls {
   display: none !important;
 }
