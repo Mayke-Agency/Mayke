@@ -334,8 +334,8 @@ body.nav-open .nav-toggle span:last-child {
   object-fit: cover;
   z-index: 2;
   display: block;
-  opacity: 0; /* hidden until real playback is confirmed */
-  transition: opacity 1800ms var(--ease);
+  opacity: 1; /* keep poster/video visible immediately */
+  transition: opacity 2600ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity;
   background: #000;
 }
@@ -345,15 +345,14 @@ body.nav-open .nav-toggle span:last-child {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0;
+  opacity: 0; /* hidden until blend */
   transform: scale(1.05);
   transition:
-    opacity 2400ms var(--ease),
-    transform 3400ms var(--ease);
+    opacity 3000ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 3600ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 
-/* show video only after actual playback begins */
 .hero-media.video-ready .hero-video {
   opacity: 1;
 }
@@ -363,9 +362,8 @@ body.nav-open .nav-toggle span:last-child {
   transform: scale(1.02);
 }
 
-/* long dissolve near the end */
 .hero.is-blending .hero-video {
-  opacity: 0.22;
+  opacity: 0.3;
 }
 
 .hero.is-blending .hero-still {
@@ -373,7 +371,6 @@ body.nav-open .nav-toggle span:last-child {
   transform: scale(1);
 }
 
-/* final state after video ends */
 .hero.is-still .hero-video {
   opacity: 0;
 }

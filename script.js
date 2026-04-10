@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!video.duration || !isFinite(video.duration)) return;
         if (blendStarted) return;
 
-        const blendLead = Math.max(3.6, video.duration * 0.45);
+        const blendLead = Math.max(2.8, video.duration * 0.38);
 
         if (video.currentTime >= video.duration - blendLead) {
           blendStarted = true;
