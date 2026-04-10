@@ -147,6 +147,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function revealVideo() {
       hero.classList.remove("is-still");
       heroMedia.classList.add("video-ready");
+
+      // fade out black screen
+      hero.classList.add("is-video-ready");
+
       setHomeReady();
     }
 

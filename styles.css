@@ -451,6 +451,20 @@ body.home-ready .hero-scroll-cue {
   outline-offset: 4px;
 }
 
+.hero-blackout {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 5;
+  opacity: 1;
+  transition: opacity 1600ms ease;
+  pointer-events: none;
+}
+
+.hero.is-video-ready .hero-blackout {
+  opacity: 0;
+}
+
 /* =====================================================
    ABOUT
    ===================================================== */
