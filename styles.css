@@ -345,7 +345,7 @@ body.nav-open .nav-toggle span:last-child {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 1; /* visible by default for Safari/mobile fallback */
+  opacity: 0;
   transform: scale(1.05);
   transition:
     opacity 2400ms var(--ease),
