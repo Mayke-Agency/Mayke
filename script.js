@@ -127,7 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (video) {
         try {
           video.pause();
-          video.currentTime = 0;
+          if (video.readyState > 0) {
+            video.currentTime = 0;
+          }
         } catch (_) {}
       }
     }
@@ -160,13 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         }
       };
-
-      try {
-        video.load();
-      } catch (_) {
-        revealStillOnly();
-        return;
-      }
 
       fallbackTimer = window.setTimeout(() => {
         if (!playbackConfirmed) {
@@ -206,10 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     bootHeroMedia();
-
-    window.addEventListener("pageshow", () => {
-      bootHeroMedia();
-    });
   }
 
   /* =========================================================
