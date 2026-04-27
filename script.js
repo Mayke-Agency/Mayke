@@ -747,6 +747,7 @@ document.addEventListener("DOMContentLoaded", () => {
         name: String(formData.get("name") || "").trim(),
         email: String(formData.get("email") || "").trim(),
         message: String(formData.get("message") || "").trim(),
+        company: String(formData.get("company") || "").trim(),
       };
 
       if (!payload.name || !payload.email || !payload.message) {

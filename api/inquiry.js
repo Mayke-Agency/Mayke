@@ -17,7 +17,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, message } = req.body || {};
+    const { name, email, message, company } = req.body || {};
+
+    if (String(company || "").trim()) {
+      return res.status(200).json({ ok: true });
+    }
 
     const cleanName = String(name || "").trim();
     const cleanEmail = String(email || "").trim();
