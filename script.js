@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!video.duration || !isFinite(video.duration)) return;
       if (blendStarted) return;
 
-      const blendLead = Math.max(2.8, video.duration * 0.38);
+      const blendLead = Math.max(5, video.duration * 0.65);
 
       if (video.currentTime >= video.duration - blendLead) {
         blendStarted = true;
@@ -217,8 +217,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     video.addEventListener("ended", () => {
-      hero.classList.remove("is-blending");
-      revealStillOnly();
+      hero.classList.add("is-still");
+      setHomeReady();
     });
 
     video.addEventListener("error", () => {
@@ -860,4 +860,19 @@ document.addEventListener("DOMContentLoaded", () => {
     initCapabilities();
     initLazyVideos();
   });
+
+  const aboutCarouselImages = document.querySelectorAll(".about-carousel__img");
+
+  if (aboutCarouselImages.length) {
+    let aboutCarouselIndex = 0;
+
+    setInterval(() => {
+      aboutCarouselImages[aboutCarouselIndex].classList.remove("is-active");
+
+      aboutCarouselIndex =
+        (aboutCarouselIndex + 1) % aboutCarouselImages.length;
+
+      aboutCarouselImages[aboutCarouselIndex].classList.add("is-active");
+    }, 4200);
+  }
 });

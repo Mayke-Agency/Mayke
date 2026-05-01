@@ -19,19 +19,14 @@
     <link rel="canonical" href="https://maykeagency.com/" />
 
     <!-- Favicon -->
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/logos/mayke-waxseal.svg" type="image/svg+xml" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap"
-      as="style"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap"
       rel="stylesheet"
     />
 
@@ -56,7 +51,7 @@
         "@type": "Organization",
         "name": "Mayke",
         "url": "https://maykeagency.com/",
-        "logo": "https://maykeagency.com/assets/maykeLogoDark.svg"
+        "logo": "https://maykeagency.com/assets/logos/mayke-waxseal.svg"
       }
     </script>
   </head>
@@ -70,7 +65,7 @@
         <a class="nav-brand" href="index.html" aria-label="Mayke home">
           <img
             class="nav-logo"
-            src="assets/maykeLogoDark.svg"
+            src="assets/logos/mayke-wordmark-bone.svg"
             alt="Mayke logo"
           />
         </a>
@@ -107,7 +102,7 @@
             webkit-playsinline
             preload="metadata"
             aria-hidden="true"
-            poster="assets/hero/creation-of-adam.webp"
+            poster=""
             disablepictureinpicture
             controlslist="nodownload noplaybackrate nofullscreen"
             x-webkit-airplay="deny"
@@ -122,7 +117,7 @@
             class="hero-still"
             aria-hidden="true"
             style="
-              background-image: url(&quot;assets/hero/creation-of-adam.webp&quot;);
+              background-color: #49110b;
             "
           ></div>
         </div>
@@ -132,7 +127,7 @@
           <h1 class="visually-hidden">Mayke Creative Agency</h1>
 
           <img
-            src="assets/maykeLogoLite.svg"
+            src="assets/logos/mayke-combomark-bone.svg"
             alt="Mayke"
             class="hero-logo"
             draggable="false"
@@ -159,6 +154,14 @@
           <!-- LEFT -->
           <div class="about-split__copy" data-reveal>
             <div class="about-split__copy-inner">
+              <div class="about-cap-mark-wrap">
+              <img
+                  src="assets/logos/mayke-waxseal.svg"
+                  alt=""
+                  class="about-cap-mark"
+                  aria-hidden="true"
+                />
+              </div>
               <h2 class="section-kicker">About</h2>
 
               <div class="subcopy">
@@ -188,20 +191,14 @@
 
           <!-- RIGHT -->
           <div class="about-split__media">
-            <video
-              class="about-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-              aria-hidden="true"
-              poster="assets/about-poster.webp"
-            >
-              <source src="assets/laguna-drone.mp4" type="video/mp4" />
-            </video>
+            <div class="about-carousel" aria-hidden="true">
+              <img src="assets/about-1.png" alt="" class="about-carousel__img is-active" />
+              <img src="assets/about-2.JPG" alt="" class="about-carousel__img" />
+              <img src="assets/about-3.JPG" alt="" class="about-carousel__img" />
+              <img src="assets/about-4.png" alt="" class="about-carousel__img" />
+              
+            </div>
           </div>
-        </div>
       </section>
 
       <!-- WHAT WE DO -->
@@ -231,7 +228,7 @@
       <section
         class="section next-steps"
         data-reveal
-        style="--nextsteps-bg: url(&quot;assets/cheers.webp&quot;)"
+        style="--nextsteps-bg: url(&quot;assets/next-steps.png&quot;)"
         aria-label="Next steps"
       >
         <div class="container next-steps-inner">
@@ -249,7 +246,7 @@
         <div class="foot-brand">
           <img
             class="foot-logo"
-            src="assets/maykeLogoDark.svg"
+            src="assets/logos/mayke-wordmark-bone.svg"
             alt="Mayke logo"
           />
         </div>
