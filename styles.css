@@ -493,23 +493,36 @@ body.home-ready .hero-scroll-cue {
   color: var(--oxblood);
 }
 
+.about-cap-mark-wrap {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+}
+
 .about-cap-mark {
-  margin-top: 1rem auto 0;
-  width: 200px;
+  margin: 0 auto;
+  width: clamp(120px, 16vw, 200px);
+  max-height: 24vh;
   height: auto;
   display: block;
-
-  transform: translateY(6px);
-
+  object-fit: contain;
   transition:
     transform 600ms var(--ease),
     opacity 600ms var(--ease);
 }
 
-.about-cap-mark-wrap {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
+@media (max-height: 720px) {
+  .about-split__copy,
+  .about-split--full .about-split__copy {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+
+  .about-cap-mark {
+    width: 140px;
+    max-height: 18vh;
+  }
 }
 
 /* reveal animation */
