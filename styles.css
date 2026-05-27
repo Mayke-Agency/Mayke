@@ -791,7 +791,6 @@ body.home-ready .hero-scroll-cue {
 
 .next-steps-hotspot {
   --hotspot-rotate: 0deg;
-  --hotspot-scale: 1;
   position: absolute;
   z-index: 2;
   display: inline-flex;
@@ -801,7 +800,7 @@ body.home-ready .hero-scroll-cue {
   min-height: 7rem;
   padding: 1.5rem 2rem;
   font-family: var(--sans);
-  font-size: clamp(0.68rem, 1vw, 0.86rem);
+  font-size: clamp(0.68rem, 1.1vw, 0.86rem);
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.16em;
@@ -819,19 +818,19 @@ body.home-ready .hero-scroll-cue {
 .next-steps-hotspot span {
   display: inline-block;
   pointer-events: none;
-  transform: scale(var(--hotspot-scale));
-  transition: transform 180ms ease;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
 }
 
 .next-steps-hotspot--portfolio {
-  --hotspot-rotate: -18.5deg;
+  --hotspot-rotate: -20deg;
   left: 31.5%;
   top: 79%;
   color: var(--charcoal);
 }
 
 .next-steps-hotspot--inquiry {
-  --hotspot-rotate: -4.5deg;
+  --hotspot-rotate: -5deg;
   left: 53%;
   top: 65.5%;
   color: var(--bone);
@@ -846,6 +845,16 @@ body.home-ready .hero-scroll-cue {
   outline: none;
 }
 
+.next-steps-hotspot--portfolio:hover,
+.next-steps-hotspot--portfolio:focus-visible {
+  color: var(--charcoal);
+}
+
+.next-steps-hotspot--inquiry:hover,
+.next-steps-hotspot--inquiry:focus-visible {
+  color: var(--bone);
+}
+
 .next-steps-hotspot:focus-visible span {
   text-decoration: underline;
   text-underline-offset: 0.35em;
@@ -853,6 +862,49 @@ body.home-ready .hero-scroll-cue {
 
 .next-steps-hotspot:active {
   transform: translate3d(-50%, -50%, 0) rotate(var(--hotspot-rotate));
+}
+
+.next-steps.is-in .next-steps-hotspot span {
+  animation: nextStepsWrite 950ms steps(14, end) 420ms both;
+}
+
+.next-steps.is-in .next-steps-hotspot--inquiry span {
+  animation-delay: 620ms;
+}
+
+.next-steps.is-written .next-steps-hotspot span {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  animation: none;
+}
+
+.next-steps.is-in .next-steps-hotspot:hover span,
+.next-steps.is-in .next-steps-hotspot:focus-visible span {
+  animation: nextStepsHoverWrite 520ms steps(14, end) both;
+}
+
+@keyframes nextStepsWrite {
+  0% {
+    opacity: 1;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes nextStepsHoverWrite {
+  0% {
+    opacity: 1;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 @media (max-width: 820px) {
@@ -867,12 +919,12 @@ body.home-ready .hero-scroll-cue {
   }
 
   .next-steps-hotspot--portfolio {
-    left: 28.5%;
-    top: 59%;
+    left: 30%;
+    top: 62%;
   }
 
   .next-steps-hotspot--inquiry {
-    left: 50%;
+    left: 53%;
     top: 54.5%;
   }
 }
@@ -1929,9 +1981,15 @@ body.is-leaving {
   .client-case__media,
   .cap-card,
   .capabilities-title,
-  .capabilities-scroll-cue {
+  .capabilities-scroll-cue,
+  .next-steps-hotspot span {
     transition: none !important;
     animation: none !important;
+  }
+
+  .next-steps-hotspot span {
+    opacity: 1 !important;
+    clip-path: none !important;
   }
 }
 
