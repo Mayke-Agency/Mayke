@@ -736,6 +736,48 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================================================
+     NEXT STEPS HOTSPOTS
+     ========================================================= */
+
+  function initNextStepsHotspots() {
+    const section = document.querySelector(".next-steps");
+    const hotspots = Array.from(
+      document.querySelectorAll(".next-steps-hotspot"),
+    );
+
+    if (!section || !hotspots.length) return;
+
+    const reset = () => {
+      hotspots.forEach((hotspot) => {
+        hotspot.style.setProperty("--hotspot-scale", "1");
+      });
+    };
+
+    section.addEventListener(
+      "pointermove",
+      (event) => {
+        hotspots.forEach((hotspot) => {
+          const rect = hotspot.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = event.clientX - cx;
+          const dy = event.clientY - cy;
+          const distance = Math.hypot(dx, dy);
+          const reach = Math.max(rect.width, rect.height) * 1.35;
+          const closeness = clamp(1 - distance / reach, 0, 1);
+          const scale = 1 + closeness * 0.22;
+
+          hotspot.style.setProperty("--hotspot-scale", scale.toFixed(3));
+        });
+      },
+      { passive: true },
+    );
+
+    section.addEventListener("pointerleave", reset);
+    section.addEventListener("blur", reset, true);
+  }
+
+  /* =========================================================
      INQUIRY FORM
      ========================================================= */
 
@@ -860,6 +902,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initHeroCollapse();
   initPageTransitions();
+  initNextStepsHotspots();
   initInquiryForm();
 
   window.requestAnimationFrame(() => {
