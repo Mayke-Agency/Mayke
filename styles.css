@@ -815,11 +815,15 @@ body.home-ready .hero-scroll-cue {
     transform 320ms ease;
 }
 
-.next-steps-hotspot span {
+.next-steps-hotspot > span {
   display: inline-block;
   pointer-events: none;
   opacity: 0;
   clip-path: inset(0 100% 0 0);
+}
+
+.next-steps-word {
+  display: inline;
 }
 
 .next-steps-hotspot--portfolio {
@@ -855,7 +859,7 @@ body.home-ready .hero-scroll-cue {
   color: var(--bone);
 }
 
-.next-steps-hotspot:focus-visible span {
+.next-steps-hotspot:focus-visible > span {
   text-decoration: underline;
   text-underline-offset: 0.35em;
 }
@@ -864,22 +868,22 @@ body.home-ready .hero-scroll-cue {
   transform: translate3d(-50%, -50%, 0) rotate(var(--hotspot-rotate));
 }
 
-.next-steps.is-in .next-steps-hotspot span {
+.next-steps.is-in .next-steps-hotspot > span {
   animation: nextStepsWrite 950ms steps(14, end) 420ms both;
 }
 
-.next-steps.is-in .next-steps-hotspot--inquiry span {
+.next-steps.is-in .next-steps-hotspot--inquiry > span {
   animation-delay: 620ms;
 }
 
-.next-steps.is-written .next-steps-hotspot span {
+.next-steps.is-written .next-steps-hotspot > span {
   opacity: 1;
   clip-path: inset(0 0 0 0);
   animation: none;
 }
 
-.next-steps.is-in .next-steps-hotspot:hover span,
-.next-steps.is-in .next-steps-hotspot:focus-visible span {
+.next-steps.is-in .next-steps-hotspot:hover > span,
+.next-steps.is-in .next-steps-hotspot:focus-visible > span {
   animation: nextStepsHoverWrite 520ms steps(14, end) both;
 }
 
@@ -930,9 +934,21 @@ body.home-ready .hero-scroll-cue {
 }
 
 @media (max-width: 480px) {
+  .next-steps-hotspot--inquiry > span {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.18em;
+    line-height: 1.05;
+  }
+
+  .next-steps-hotspot--inquiry .next-steps-word {
+    display: block;
+  }
+
   .next-steps-hotspot--portfolio {
     left: 30%;
-    top: 60%;
+    top: 59%;
   }
 
   .next-steps-hotspot--inquiry {
@@ -1994,12 +2010,12 @@ body.is-leaving {
   .cap-card,
   .capabilities-title,
   .capabilities-scroll-cue,
-  .next-steps-hotspot span {
+  .next-steps-hotspot > span {
     transition: none !important;
     animation: none !important;
   }
 
-  .next-steps-hotspot span {
+  .next-steps-hotspot > span {
     opacity: 1 !important;
     clip-path: none !important;
   }

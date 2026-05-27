@@ -742,7 +742,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function initNextStepsWriteState() {
     const section = document.querySelector(".next-steps");
     const spans = Array.from(
-      document.querySelectorAll(".next-steps-hotspot span"),
+      document.querySelectorAll(".next-steps-hotspot > span"),
     );
 
     if (!section || !spans.length) return;
