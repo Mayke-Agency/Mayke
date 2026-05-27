@@ -1388,7 +1388,7 @@ body.home-ready .hero-scroll-cue {
 
   .clients-gallery {
     --tab-h: 3.25rem;
-    --case-read-space: clamp(7rem, 18vh, 10rem);
+    --case-read-space: clamp(12rem, 28vh, 18rem);
     padding-bottom: 3rem;
   }
 
@@ -1438,8 +1438,8 @@ body.home-ready .hero-scroll-cue {
     );
     padding: 1.25rem 0 clamp(2rem, 8vh, 4rem);
     grid-template-columns: 1fr;
-    gap: 1.8rem;
-    align-content: center;
+    gap: clamp(1rem, 3vh, 1.6rem);
+    align-content: start;
   }
 
   .client-case__media,
@@ -1451,7 +1451,7 @@ body.home-ready .hero-scroll-cue {
     grid-column: auto;
     grid-row: 1;
     width: 100%;
-    height: var(--client-media-height, clamp(12rem, 32vh, 19rem));
+    height: var(--client-media-height, clamp(9rem, 26vh, 16rem));
     aspect-ratio: auto;
     margin: 0;
     justify-self: stretch;

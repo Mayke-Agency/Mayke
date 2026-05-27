@@ -826,8 +826,8 @@ document.addEventListener("DOMContentLoaded", () => {
           1,
         );
         const caseWidth = caseEl.clientWidth;
-        const maxHeight = clamp(caseWidth * 0.68, 180, viewport * 0.34);
-        const minHeight = clamp(caseWidth * 0.34, 108, viewport * 0.18);
+        const maxHeight = clamp(caseWidth * 0.58, 150, viewport * 0.28);
+        const minHeight = clamp(caseWidth * 0.18, 64, viewport * 0.11);
         const height = maxHeight - (maxHeight - minHeight) * progress;
 
         media.style.setProperty(
