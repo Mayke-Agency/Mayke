@@ -811,6 +811,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const media = caseEl.querySelector(".client-case__media");
         if (!media) return;
 
+        if (caseEl === cases[cases.length - 1]) {
+          media.style.removeProperty("--client-media-height");
+          return;
+        }
+
         const styles = window.getComputedStyle(caseEl);
         const stackPeek = parseFloat(styles.getPropertyValue("--stack-peek"));
         const stickyTop =
