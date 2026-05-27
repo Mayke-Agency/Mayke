@@ -65,7 +65,7 @@
 
     <header class="site-header is-hidden" data-header>
       <div class="container header-inner">
-        <a class="nav-brand" href="index.html#about" aria-label="Mayke home">
+        <a class="nav-brand" href="/" aria-label="Mayke home">
           <img
             class="nav-logo"
             src="assets/logos/mayke-wordmark-bone.svg"
@@ -84,165 +84,301 @@
 
         <nav class="site-nav" data-nav aria-label="Primary">
           <ul class="nav-list">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="capabilities.html">Capabilities</a></li>
-            <li><a href="clients.html">Portfolio</a></li>
-            <li><a class="nav-cta" href="inquiry.html">Work with us</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/capabilities">Capabilities</a></li>
+            <li><a href="/clients" aria-current="page">Clients</a></li>
+            <li><a class="nav-cta" href="/inquiry">Inquiry</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <!-- Client media grid -->
-      <section class="clients-gallery" aria-label="Clients gallery">
-        <div class="clients-grid">
-          <a class="client-tile" href="#" aria-label="Client 1">
-            <img
-              class="client-img is-default make-white"
-              src="assets/clients/client-logo/lagunaCoffeeLogo.svg"
-              alt="Client 1 preview"
-            />
-            <video
-              class="client-img is-hover"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-            >
-              <source
-                src="assets/clients/client-video/lagunaCoffee.mov"
-                type="video/mp4"
-              />
-            </video>
-          </a>
-
-          <a class="client-tile" href="#" aria-label="Client 2">
-            <img
-              class="client-img is-default make-white"
-              src="assets/clients/client-logo/JNT-Logo.svg"
-              alt="Client 2 preview"
-            />
-            <img
-              class="client-img is-hover"
-              src="assets/clients/client-video/jntraveler-website.png"
-              alt="Client 7 preview"
-            />
-          </a>
-
-          <a class="client-tile" href="#" aria-label="Client 3">
-            <img
-              class="client-img is-default make-white"
-              src="assets/clients/client-logo/wigzLogo.svg"
-              alt="Client 3 preview"
-            />
-            <video
-              class="client-img is-hover"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-            >
-              <source
-                src="assets/clients/client-video/wigz.mov"
-                type="video/mp4"
-              />
-            </video>
-          </a>
-
-          <a class="client-tile" href="#" aria-label="Client 4">
-            <img
-              class="client-img is-default make-white"
-              src="assets/clients/client-logo/rif-logo.svg"
-              alt="Client 4 preview"
-            />
-            <video
-              class="client-img is-hover"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-            >
-              <source src="" type="video/mp4" />
-            </video>
-          </a>
-
-          <a class="client-tile" href="#" aria-label="Client 5">
-            <img
-              class="client-img is-default make-white"
-              src="assets/clients/client-logo/mayu-logo.svg"
-              alt="Client 5 preview"
-            />
-            <video
-              class="client-img is-hover"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-            >
-              <source
-                src="assets/clients/client-video/mayu-video.MP4"
-                type="video/mp4"
-              />
-            </video>
-          </a>
-
-          <a class="client-tile" href="#" aria-label="Client 6">
-            <img
-              class="client-img is-default make-white"
-              src="assets/clients/client-logo/coyoteGrillLogo.svg"
-              alt="Client 6 preview"
-            />
-            <video
-              class="client-img is-hover"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-            >
-              <source
-                src="assets/clients/client-video/coyotoGrill.mov"
-                type="video/mp4"
-              />
-            </video>
-          </a>
-
-          <a class="client-tile client-jete" href="#" aria-label="Client 7">
-            <img
-              class="client-img is-default make-white"
-              src="assets/clients/client-logo/jete-wordmark.svg"
-              alt="Client 7 preview"
-            />
-            <img
-              class="client-img is-hover"
-              src="assets/clients/client-video/jete-website.png"
-              alt="Client 7 preview"
-            />
-          </a>
-
-          <a class="client-tile" href="#" aria-label="Client 8">
-            <img
-              class="client-img is-default make-white"
-              src="assets/clients/client-logo/dog-logo.svg"
-              alt="Client 8 preview"
-            />
-            <video
-              class="client-img is-hover"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-            >
-              <source src="#" type="video/mp4" />
-            </video>
-          </a>
+      <section class="page-intro" aria-labelledby="clients-title">
+        <div class="container page-intro__inner">
+          <h1 id="clients-title">Selected Work</h1>
         </div>
+      </section>
+
+      <section class="clients-gallery" aria-label="Selected client work">
+        <article class="client-case">
+          <div class="client-case__tab">Laguna Coffee</div>
+          <div class="client-case__inner">
+            <div class="client-case__media">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="assets/clients/client-logo/lagunaCoffeeLogo.svg"
+              >
+                <source
+                  data-src="assets/clients/client-video/lagunaCoffee.mov"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="client-case__copy">
+              <p class="client-case__category">Social Strategy / Content</p>
+              <p>
+                We helped turn Laguna Coffee Co. into one of the most
+                recognizable social brands in its local market. Through a
+                content strategy built around consistency, storytelling, and
+                culture-first creative, we scaled the brand from videos reaching
+                a few hundred viewers to consistent 5K–40K view performance,
+                alongside multiple viral videos in the hundreds of thousands and
+                one surpassing 5.7 million views.
+              </p>
+              <p>
+                Beyond growth, we helped redefine what social media looked like
+                for local businesses in Laguna Beach. Through ongoing content
+                production, creative direction, and graphic design, the brand
+                built a loyal digital community, gained over 4,000 followers,
+                and became widely known for its online presence both inside and
+                outside the local business scene.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="client-case">
+          <div class="client-case__tab">JN Traveler</div>
+          <div class="client-case__inner">
+            <div class="client-case__media">
+              <img
+                src="assets/clients/client-video/jntraveler-website.png"
+                alt="JN Traveler project preview"
+                loading="lazy"
+              />
+            </div>
+            <div class="client-case__copy">
+              <p class="client-case__category">Web / Branding</p>
+              <p>
+                We created a fully custom digital experience for JN Traveler
+                centered around elevated storytelling and intentional
+                positioning within the luxury travel space. From web design to
+                copywriting, every detail was crafted to feel refined,
+                immersive, and highly personalized.
+              </p>
+              <p>
+                The goal was to move beyond a standard travel website and build
+                a brand presence that communicates trust, exclusivity, and
+                experience. Through clean editorial layouts, strategic
+                messaging, and a tailored visual direction, we positioned the
+                brand to better connect with high-intent luxury clientele.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="client-case">
+          <div class="client-case__tab">Wigz</div>
+          <div class="client-case__inner">
+            <div class="client-case__media">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="assets/clients/client-logo/wigzLogo.svg"
+              >
+                <source
+                  data-src="assets/clients/client-video/wigz.mov"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="client-case__copy">
+              <p class="client-case__category">Content / Social Strategy</p>
+              <p>
+                For Wigz, the focus was on building a brand presence with
+                longevity. We established a stronger digital voice, clarified
+                the visual direction, and developed a content approach centered
+                around authenticity and audience connection rather than
+                trend-dependent growth.
+              </p>
+              <p>
+                Since launch, engagement and video performance have steadily
+                increased while the brand continues to cultivate a more engaged
+                and recognizable online community. The work positioned Wigz with
+                a clearer identity and a stronger foundation for long-term
+                digital growth.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="client-case">
+          <div class="client-case__tab">RIF</div>
+          <div class="client-case__inner">
+            <div class="client-case__media client-case__media--logo">
+              <img
+                src="assets/clients/client-logo/rif-logo.svg"
+                alt="RIF project preview"
+                loading="lazy"
+              />
+            </div>
+            <div class="client-case__copy">
+              <p class="client-case__category">Experiential / UGC</p>
+              <p>
+                For Rif Care, we focused on experiential marketing as a way to
+                deepen brand connection and expand community reach. We planned
+                and coordinated an intimate influencer dinner experience that
+                brought together aligned creators, tastemakers, and partner
+                businesses in an environment designed to feel organic, elevated,
+                and relationship-driven.
+              </p>
+              <p>
+                Alongside event execution, we led UGC-focused content
+                initiatives that extended the experience beyond the event itself
+                — creating authentic brand storytelling across social platforms
+                while strengthening visibility within aligned wellness and
+                lifestyle communities.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="client-case">
+          <div class="client-case__tab">Mago Hot Sauce</div>
+          <div class="client-case__inner">
+            <div class="client-case__media">
+              <img
+                src="assets/clients/client-video/mago-website.png"
+                alt="RIF project preview"
+                loading="lazy"
+              />
+            </div>
+            <div class="client-case__copy">
+              <p class="client-case__category">
+                Web / Branding / Content / Social Strategy
+              </p>
+              <p>
+                We led a complete rebrand of Mago Hot Sauce’s digital presence,
+                redefining how the brand shows up across web, social, and online
+                storytelling. The project included a full website redesign,
+                social media strategy, creative direction, and ongoing content
+                development aimed at positioning the brand with a stronger, more
+                elevated identity while staying connected to its roots and
+                community.
+              </p>
+              <p>
+                The new digital experience was designed to feel bold,
+                culture-driven, and visually immersive — combining modern DTC
+                design language with storytelling that highlights the
+                personality behind the brand. Across social, we developed a more
+                cohesive content strategy focused on engagement, brand
+                recognition, and long-term audience growth, helping establish a
+                clearer voice and stronger visual consistency across every
+                touchpoint.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="client-case">
+          <div class="client-case__tab">Coyote Grill</div>
+          <div class="client-case__inner">
+            <div class="client-case__media">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="assets/clients/client-logo/coyoteGrillLogo.svg"
+              >
+                <source
+                  data-src="assets/clients/client-video/coyotoGrill.mov"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="client-case__copy">
+              <p class="client-case__category">Social Strategy / Content</p>
+              <p>
+                We repositioned Coyote Grill’s social presence from occasional
+                posting into a consistent brand ecosystem designed to drive
+                engagement, visibility, and community recognition. What once
+                generated hundreds of views now regularly reaches 15K+ viewers,
+                with multiple videos surpassing 20K and several reaching
+                millions organically.
+              </p>
+              <p>
+                Our approach focused on building content that felt native to the
+                culture around the brand — energetic, community-driven, and
+                highly shareable. As the audience grew, so did guest
+                interaction, shares, and overall brand awareness. Today, Coyote
+                Grill has become one of the most socially recognizable
+                restaurant brands in its local market.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="client-case">
+          <div class="client-case__tab">Jete Dance Center</div>
+          <div class="client-case__inner">
+            <div class="client-case__media">
+              <img
+                src="assets/clients/client-video/jete-website.png"
+                alt="Jete Dance Center project preview"
+                loading="lazy"
+              />
+            </div>
+            <div class="client-case__copy">
+              <p class="client-case__category">Web / Brand Presence</p>
+              <p>
+                We redesigned Jeté Dance Studio’s digital experience to better
+                reflect the professionalism and energy of the studio itself. The
+                project included full web design, brand consultation, and
+                content direction, alongside the development of a custom student
+                registration and enrollment system designed to streamline
+                onboarding for families and staff.
+              </p>
+              <p>
+                The new platform modernized the studio’s online presence while
+                improving usability across both mobile and desktop. Beyond
+                aesthetics, the focus was creating a system that supports
+                growth, simplifies operations, and gives the studio a more
+                elevated and cohesive brand experience online.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="client-case">
+          <div class="client-case__tab">Daughter of Gaia</div>
+          <div class="client-case__inner">
+            <div class="client-case__media client-case__media--logo">
+              <img
+                src="assets/clients/client-logo/dog-logo.svg"
+                alt="Daughter of Gaia project preview"
+                loading="lazy"
+              />
+            </div>
+            <div class="client-case__copy">
+              <p class="client-case__category">Brand / Identity</p>
+              <p>
+                We developed Daughter of Gaia as a fully realized brand system
+                from the ground up — spanning brand identity, positioning,
+                packaging, web design, and creative direction. Every element was
+                built to create a cohesive, elevated presence within the
+                wellness space while maintaining a sense of warmth and emotional
+                connection.
+              </p>
+              <p>
+                The project focused heavily on world-building: creating a brand
+                that feels intentional at every touchpoint, from packaging and
+                digital experience to tone and visual storytelling. Following
+                launch, the partnership will expand into strategy, content, and
+                ongoing brand growth initiatives.
+              </p>
+            </div>
+          </div>
+        </article>
       </section>
 
       <!-- Testimonials carousel -->

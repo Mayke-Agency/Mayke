@@ -65,7 +65,7 @@
 
     <header class="site-header is-hidden" data-header>
       <div class="container header-inner">
-        <a class="nav-brand" href="index.html#about" aria-label="Mayke home">
+        <a class="nav-brand" href="/" aria-label="Mayke home">
           <img
             class="nav-logo"
             src="assets/logos/mayke-wordmark-bone.svg"
@@ -84,94 +84,106 @@
 
         <nav class="site-nav page-inquiry" data-nav aria-label="Primary">
           <ul class="nav-list">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="capabilities.html">Capabilities</a></li>
-            <li><a href="clients.html">Portfolio</a></li>
-            <li><a class="nav-cta" href="inquiry.html">Work with us</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/capabilities">Capabilities</a></li>
+            <li><a href="/clients">Clients</a></li>
+            <li>
+              <a class="nav-cta" href="/inquiry" aria-current="page">
+                Inquiry
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <section class="inquiry inquiry--bleed" aria-label="Inquiry">
-        <div
-          class="inquiry-bg"
-          style="background-image: url(&quot;assets/inquiry-photo.JPG&quot;)"
-        ></div>
-
-        <div class="inquiry-wrap">
-          <header class="inquiry-head">
-            <h2 class="inquiry-kicker">Inquiry</h2>
-          </header>
-
-          <form class="inquiry-form" id="inquiry-form" novalidate>
-            <div class="grid">
-              <div class="field">
-                <label for="name">Your name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Full name"
-                  required
-                />
-              </div>
-
-              <div class="field">
-                <label for="name">Your company</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Company name"
-                  required
-                />
-              </div>
-
-              <div class="field">
-                <label for="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="you@brand.com"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="message">How can we support you?</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="6"
-                placeholder="Goals, context, links, timing..."
-                required
-              ></textarea>
-            </div>
-
-            <div class="hp" aria-hidden="true">
-              <label for="company">Company</label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                tabindex="-1"
-                autocomplete="off"
-              />
-            </div>
-
-            <div class="form-row">
-              <button class="btn chic-submit" type="submit">
-                Send inquiry
-              </button>
-            </div>
-
-            <p id="form-status" aria-live="polite"></p>
-          </form>
+      <section class="page-intro" aria-labelledby="inquiry-title">
+        <div class="container page-intro__inner">
+          <h1 id="inquiry-title">Inquiry</h1>
         </div>
+      </section>
+
+      <section class="page-sticky-stage" aria-label="Inquiry detail">
+        <section class="inquiry inquiry--bleed" aria-label="Inquiry">
+          <div
+            class="inquiry-bg"
+            style="background-image: url(&quot;assets/inquiry-photo.JPG&quot;)"
+          ></div>
+
+          <div class="inquiry-wrap">
+            <header class="inquiry-head">
+              <h2 class="inquiry-kicker">Project Details</h2>
+            </header>
+
+            <form class="inquiry-form" id="inquiry-form" novalidate>
+              <div class="grid">
+                <div class="field">
+                  <label for="name">Your name</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Full name"
+                    required
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="name">Your company</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Company name"
+                    required
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@brand.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="message">How can we support you?</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  placeholder="Goals, context, links, timing..."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="hp" aria-hidden="true">
+                <label for="company">Company</label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="form-row">
+                <button class="btn chic-submit" type="submit">
+                  Send inquiry
+                </button>
+              </div>
+
+              <p id="form-status" aria-live="polite"></p>
+            </form>
+          </div>
+        </section>
       </section>
     </main>
 

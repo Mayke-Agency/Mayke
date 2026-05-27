@@ -617,12 +617,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cue = document.querySelector(".capabilities-scroll-cue");
     const title = document.querySelector(".capabilities-title");
-
     if (!stack || !cards.length) return;
+
+    const section = stack.closest(".capabilities-split");
 
     let lastScrollTop = stack.scrollTop;
 
     const update = () => {
+      if (section) {
+        const sectionTop = section.getBoundingClientRect().top;
+        const scrollReady = sectionTop <= getHeaderOffset() + 1;
+        section.classList.toggle("is-scroll-ready", scrollReady);
+      }
+
       const stackRect = stack.getBoundingClientRect();
       const stackCenter = stackRect.top + stackRect.height / 2;
 
@@ -672,6 +679,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     stack.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update, { passive: true });
     window.addEventListener("pageshow", update);
     update();
