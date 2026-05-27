@@ -459,7 +459,7 @@ body.home-ready .hero-scroll-cue {
 
 .subcopy p {
   margin: 0 0 1.2rem;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: color-mix(in oklab, var(--ink) 82%, var(--muted));
 }
 
@@ -681,7 +681,7 @@ body.home-ready .hero-scroll-cue {
 
 .services-copy p {
   margin-bottom: 1.1rem;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: color-mix(in oklab, var(--ink) 82%, var(--muted));
 }
@@ -1053,6 +1053,7 @@ body.home-ready .hero-scroll-cue {
 
 .clients-gallery {
   --tab-h: clamp(3.5rem, 5vw, 4rem);
+  --case-read-space: clamp(7rem, 16vh, 12rem);
   padding: 0 0 clamp(4rem, 12vh, 8rem);
   margin: 0;
   background: var(--bone);
@@ -1063,7 +1064,7 @@ body.home-ready .hero-scroll-cue {
   position: sticky;
   top: calc(64px + var(--stack-peek));
   z-index: 1;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px + var(--case-read-space));
   padding-inline: var(--pad);
   background: var(--bone);
   border-top: var(--line);
@@ -1133,7 +1134,9 @@ body.home-ready .hero-scroll-cue {
 }
 
 .client-case__inner {
-  min-height: calc(100vh - 64px - var(--tab-h) - var(--stack-peek));
+  min-height: calc(
+    100vh - 64px - var(--tab-h) - var(--stack-peek) + var(--case-read-space)
+  );
   width: min(var(--max), 100%);
   margin-inline: auto;
   padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
@@ -1252,11 +1255,12 @@ body.home-ready .hero-scroll-cue {
 
   .clients-gallery {
     --tab-h: 3.25rem;
+    --case-read-space: clamp(7rem, 18vh, 10rem);
     padding-bottom: 3rem;
   }
 
   .client-case {
-    min-height: calc(100vh - 64px);
+    min-height: calc(100vh - 64px + var(--case-read-space));
     padding-inline: var(--pad);
   }
 
@@ -1296,7 +1300,9 @@ body.home-ready .hero-scroll-cue {
 
   .client-case__inner,
   .client-case:nth-child(even) .client-case__inner {
-    min-height: calc(100vh - 64px - var(--tab-h) - var(--stack-peek));
+    min-height: calc(
+      100vh - 64px - var(--tab-h) - var(--stack-peek) + var(--case-read-space)
+    );
     padding: 1.25rem 0 clamp(2rem, 8vh, 4rem);
     grid-template-columns: 1fr;
     gap: 1.8rem;
