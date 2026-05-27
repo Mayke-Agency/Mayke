@@ -902,6 +902,20 @@ body.home-ready .hero-scroll-cue {
   color: rgba(247, 245, 239, 0.74);
 }
 
+@media (max-width: 820px) {
+  .foot {
+    justify-content: flex-start;
+  }
+
+  .foot-brand {
+    display: none;
+  }
+
+  .site-footer .foot-social {
+    margin-right: auto !important;
+  }
+}
+
 /* Testimonials */
 
 .t-section {
