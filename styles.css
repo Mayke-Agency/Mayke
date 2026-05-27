@@ -1188,7 +1188,7 @@ body.home-ready .hero-scroll-cue {
   --tab-h: clamp(3.5rem, 5vw, 4rem);
   --case-read-space: clamp(7rem, 16vh, 12rem);
   --case-scroll-space: var(--case-read-space);
-  padding: 0 0 clamp(4rem, 12vh, 8rem);
+  padding: 0;
   margin: 0;
   background: var(--bone);
 }
@@ -1253,7 +1253,7 @@ body.home-ready .hero-scroll-cue {
 
 .client-case:last-child {
   --case-read-space: 0px;
-  --case-scroll-space: clamp(7rem, 18vh, 12rem);
+  --case-scroll-space: 0px;
 }
 
 .client-case__tab {
@@ -1298,7 +1298,6 @@ body.home-ready .hero-scroll-cue {
     opacity 420ms var(--ease);
 }
 
-.client-case__media img,
 .client-case__media video {
   width: 100%;
   height: 100%;
@@ -1307,17 +1306,28 @@ body.home-ready .hero-scroll-cue {
   object-position: center;
 }
 
+.client-case__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
 .client-case__media--logo {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: clamp(2rem, 6vw, 5rem);
   background: var(--oxblood);
 }
 
 .client-case__media--logo img {
-  width: min(24rem, 74%);
+  width: min(22rem, 68%);
   height: auto;
+  max-height: 72%;
   object-fit: contain;
+  object-position: center;
   filter: brightness(0) invert(1);
 }
 
@@ -1396,7 +1406,7 @@ body.home-ready .hero-scroll-cue {
     --tab-h: 3.25rem;
     --case-read-space: clamp(12rem, 28vh, 18rem);
     --case-scroll-space: var(--case-read-space);
-    padding-bottom: 3rem;
+    padding-bottom: 0;
   }
 
   .client-case {
@@ -1406,7 +1416,7 @@ body.home-ready .hero-scroll-cue {
 
   .client-case:last-child {
     --case-read-space: 0px;
-    --case-scroll-space: clamp(8rem, 22vh, 13rem);
+    --case-scroll-space: 0px;
   }
 
   .client-case:nth-child(2) {
@@ -1468,6 +1478,16 @@ body.home-ready .hero-scroll-cue {
     margin: 0;
     justify-self: stretch;
     align-self: auto;
+  }
+
+  .client-case__media--logo {
+    padding: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .client-case__media--logo img {
+    width: auto;
+    max-width: 72%;
+    max-height: 76%;
   }
 
   .client-case__copy,
