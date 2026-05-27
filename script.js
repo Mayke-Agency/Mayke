@@ -765,6 +765,90 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================================================
+     MOBILE CLIENT MEDIA SHRINK
+     ========================================================= */
+
+  function initClientMediaShrink() {
+    const cases = Array.from(document.querySelectorAll(".client-case"));
+    const mobile = window.matchMedia("(max-width: 800px)");
+
+    if (!cases.length || reduceMotion) return;
+
+    let raf = 0;
+
+    const getDocumentTop = (el) => {
+      let top = 0;
+      let node = el;
+
+      while (node) {
+        top += node.offsetTop;
+        node = node.offsetParent;
+      }
+
+      return top;
+    };
+
+    const reset = () => {
+      cases.forEach((caseEl) => {
+        const media = caseEl.querySelector(".client-case__media");
+        media?.style.removeProperty("--client-media-height");
+      });
+    };
+
+    const update = () => {
+      raf = 0;
+
+      if (!mobile.matches) {
+        reset();
+        return;
+      }
+
+      const viewport = window.innerHeight;
+      const scrollY = window.scrollY;
+      const headerOffset = getHeaderOffset();
+
+      cases.forEach((caseEl) => {
+        const media = caseEl.querySelector(".client-case__media");
+        if (!media) return;
+
+        const styles = window.getComputedStyle(caseEl);
+        const stackPeek = parseFloat(styles.getPropertyValue("--stack-peek"));
+        const stickyTop =
+          headerOffset + (Number.isFinite(stackPeek) ? stackPeek : 0);
+        const caseTop = getDocumentTop(caseEl);
+        const stickySpan = Math.max(
+          caseEl.offsetHeight - (viewport - stickyTop),
+          1,
+        );
+        const progress = clamp(
+          (scrollY - (caseTop - stickyTop)) / stickySpan,
+          0,
+          1,
+        );
+        const caseWidth = caseEl.clientWidth;
+        const maxHeight = clamp(caseWidth * 0.68, 180, viewport * 0.34);
+        const minHeight = clamp(caseWidth * 0.34, 108, viewport * 0.18);
+        const height = maxHeight - (maxHeight - minHeight) * progress;
+
+        media.style.setProperty(
+          "--client-media-height",
+          `${height.toFixed(1)}px`,
+        );
+      });
+    };
+
+    const requestUpdate = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate, { passive: true });
+    window.addEventListener("pageshow", requestUpdate);
+    requestUpdate();
+  }
+
+  /* =========================================================
      INQUIRY FORM
      ========================================================= */
 
@@ -890,6 +974,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroCollapse();
   initPageTransitions();
   initNextStepsWriteState();
+  initClientMediaShrink();
   initInquiryForm();
 
   window.requestAnimationFrame(() => {

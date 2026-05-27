@@ -1451,6 +1451,8 @@ body.home-ready .hero-scroll-cue {
     grid-column: auto;
     grid-row: 1;
     width: 100%;
+    height: var(--client-media-height, clamp(12rem, 32vh, 19rem));
+    aspect-ratio: auto;
     margin: 0;
     justify-self: stretch;
     align-self: auto;
