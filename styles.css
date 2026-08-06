@@ -411,6 +411,12 @@ body.home-ready .hero-scroll-cue {
   outline-offset: 4px;
 }
 
+@media (max-width: 820px) {
+  .hero-scroll-cue {
+    bottom: 48px;
+  }
+}
+
 /* About */
 
 .about-split.about-split--full {
