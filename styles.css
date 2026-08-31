@@ -655,6 +655,16 @@ body.home-ready .hero-scroll-cue {
   }
 }
 
+/* Safari's fixed header can overlap the leading edge of this section. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 900px) {
+    .about-split__copy,
+    .about-split--full .about-split__copy {
+      padding-top: calc(1.6rem + 64px + env(safe-area-inset-top)) !important;
+    }
+  }
+}
+
 /* Sections */
 
 .section {
