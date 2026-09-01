@@ -55,9 +55,10 @@ export default async function handler(req, res) {
       city: cleanText(body.city),
       state: cleanText(body.state),
       interests: cleanList(body.interests),
+      consent: cleanText(body.consent) === "yes",
     };
 
-    if (!submission.name || !submission.email || !submission.handles || !submission.city || !submission.state) {
+    if (!submission.name || !submission.email || !submission.handles || !submission.city || !submission.state || !submission.consent) {
       return res.status(400).json({ error: "Please complete all required fields." });
     }
 
@@ -82,6 +83,7 @@ export default async function handler(req, res) {
         ${emailRow("Other content category", submission.categoryOther)}
         ${emailRow("Location", `${submission.city}, ${submission.state}`)}
         ${emailRow("Partnership interests", submission.interests)}
+        ${emailRow("Email consent", "Yes")}
       `,
     });
 

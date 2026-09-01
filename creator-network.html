@@ -482,6 +482,16 @@
               >
             </div>
           </fieldset>
+          <div class="creator-consent" data-creator-consent hidden>
+            <p>
+              By checking this box, you agree to receive occasional email
+              updates from Mayke about upcoming creator opportunities.
+            </p>
+            <label for="creator-consent">
+              <input id="creator-consent" name="consent" type="checkbox" value="yes" />
+              I agree to receive email updates from Mayke.
+            </label>
+          </div>
           <p
             class="creator-modal__error"
             aria-live="polite"
@@ -513,8 +523,7 @@
         >
           <h2>Thank you.</h2>
           <p>
-            We’ve received your partnership inquiry and will be in touch if
-            there’s a fit.
+            We’ll keep you updated on upcoming opportunities.
           </p>
           <button class="creator-network__cta" type="button" data-creator-close>
             Close
@@ -539,6 +548,8 @@
         const number = document.querySelector("[data-creator-step-number]");
         const error = document.querySelector("[data-creator-error]");
         const success = document.querySelector("[data-creator-success]");
+        const consent = form?.querySelector("[data-creator-consent]");
+        const consentInput = consent?.querySelector("input");
         const otherFields = ["platform", "categories"].map((name) => ({
           container: form?.querySelector(
             `[data-creator-other-field="${name}"]`,
@@ -563,6 +574,14 @@
           syncOtherField(field);
         });
 
+        const syncConsent = () => {
+          const isFinalStep = step === steps.length - 1;
+          if (consent) consent.hidden = !isFinalStep;
+          if (next) next.disabled = isFinalStep && !consentInput?.checked;
+        };
+
+        consentInput?.addEventListener("change", syncConsent);
+
         const setStep = (index) => {
           step = index;
           steps.forEach((item, itemIndex) => {
@@ -571,6 +590,7 @@
           number.textContent = String(step + 1);
           back.hidden = step === 0;
           next.textContent = step === steps.length - 1 ? "Submit" : "Continue";
+          syncConsent();
           error.textContent = "";
           const focusable = steps[step].querySelector("input, textarea");
           focusable?.focus();
@@ -616,6 +636,7 @@
             city: data.get("city"),
             state: data.get("state"),
             interests: data.getAll("interests"),
+            consent: data.get("consent"),
             company: data.get("company"),
             startedAt: data.get("startedAt"),
           };

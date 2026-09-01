@@ -1457,6 +1457,34 @@ body.page-creator-network {
   color: var(--umber);
 }
 
+.creator-consent[hidden] {
+  display: none;
+}
+
+.creator-consent {
+  margin: 1.5rem 0;
+  color: var(--umber);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.creator-consent p {
+  margin: 0 0 0.75rem;
+}
+
+.creator-consent label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.creator-consent input {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15rem;
+  accent-color: var(--oxblood);
+}
+
 .creator-modal__error {
   min-height: 1.5em;
   margin: 0 0 1rem;
