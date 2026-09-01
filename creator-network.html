@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Creator Network | Mayke</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Join the Mayke Creator Network for thoughtful brand opportunities and partnerships."
+    />
+    <meta name="theme-color" content="#EBDAC6" />
+    <link rel="canonical" href="https://maykeagency.com/creator-network" />
+    <link
+      rel="icon"
+      href="assets/logos/mayke-waxseal.svg"
+      type="image/svg+xml"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=3" />
+  </head>
+
+  <body class="page-creator-network">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="nav-brand" href="/" aria-label="Mayke home">
+          <img
+            class="nav-logo"
+            src="assets/logos/mayke-wordmark-bone.svg"
+            alt="Mayke"
+          />
+        </a>
+        <button
+          class="nav-toggle"
+          data-burger
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav" data-nav aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/capabilities">Capabilities</a></li>
+            <li><a href="/clients">Portfolio</a></li>
+            <li>
+              <a href="/creator-network" aria-current="page">Creator Network</a>
+            </li>
+            <li><a class="nav-cta" href="/inquiry">Work with us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section
+        class="creator-network-intro"
+        aria-labelledby="creator-network-title"
+      >
+        <div class="container creator-network-intro__inner">
+          <h1 id="creator-network-title">Creator Network</h1>
+        </div>
+      </section>
+
+      <section
+        class="creator-network-process"
+        aria-labelledby="how-it-works-title"
+      >
+        <div class="container">
+          <p class="creator-network__eyebrow" id="how-it-works-title">
+            How it works
+          </p>
+
+          <p class="creator-network__lead">
+            Mayke connects brands and businesses with creators who can help
+            bring their stories, spaces, products, and experiences to life. Our
+            Creator Network is a growing community of content creators we
+            partner with for select client campaigns, from social content and
+            UGC to local experiences, events, product launches, and brand
+            collaborations.
+          </p>
+          <p class="creator-network__lead creator-network__lead--follow">
+            If you’re a creator interested in working with businesses that fit
+            your style and audience, we’d love to know you. Join the Mayke
+            Creator Network to be considered for upcoming opportunities,
+            including paid partnerships, gifted products, hosted experiences,
+            and other collaborations. When we have an opportunity that feels
+            like the right fit, we’ll reach out with the details.
+          </p>
+          <button
+            class="creator-network__cta creator-network__apply"
+            type="button"
+            data-creator-open
+          >
+            <span>Apply to Join</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container foot">
+        <div class="foot-brand">
+          <img
+            class="foot-logo"
+            src="assets/logos/mayke-wordmark-bone.svg"
+            alt="Mayke logo"
+          />
+        </div>
+        <nav aria-label="Social" class="foot-social">
+          <a
+            href="https://instagram.com/maykeagency"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="1"></circle>
+            </svg>
+          </a>
+          <a
+            href="https://tiktok.com/@maykeagency"
+            target="_blank"
+            rel="noopener"
+            aria-label="TikTok"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M16.5 3c.4 2 1.8 3.6 3.5 4v3c-1.3 0-2.5-.4-3.5-1.1v6.2c0 3-2.4 5.4-5.4 5.4S5.7 18.1 5.7 15s2.4-5.4 5.4-5.4c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.2-.9-.2-1.3 0-2.4 1.1-2.4 2.4s1.1 2.4 2.4 2.4 2.4-1.1 2.4-2.4V3h3z"
+              />
+            </svg>
+          </a>
+          <a href="mailto:alan@maykeagency.com" aria-label="Email">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="M3 7l9 6 9-6"></path>
+            </svg>
+          </a>
+        </nav>
+        <div class="foot-meta">© <span id="year"></span> Mayke</div>
+      </div>
+    </footer>
+
+    <div class="creator-modal" data-creator-modal hidden>
+      <div class="creator-modal__backdrop" data-creator-close></div>
+      <section
+        class="creator-modal__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Creator Network application"
+        tabindex="-1"
+      >
+        <button
+          class="creator-modal__close"
+          type="button"
+          aria-label="Close application"
+          data-creator-close
+        >
+          ×
+        </button>
+        <form id="creator-network-form" novalidate>
+          <input type="hidden" name="startedAt" value="" />
+          <div class="hp" aria-hidden="true">
+            <label for="creator-company">Company</label>
+            <input
+              id="creator-company"
+              name="company"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+          <header class="creator-modal__header">
+            <p class="creator-network__eyebrow">Creator Network</p>
+            <p class="creator-modal__progress" aria-live="polite">
+              <span data-creator-step-number>1</span> / 8
+            </p>
+          </header>
+
+          <div class="creator-form-step" data-creator-step>
+            <label for="creator-name" id="creator-form-title"
+              >What is your name?</label
+            >
+            <input
+              id="creator-name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            />
+          </div>
+          <div class="creator-form-step" data-creator-step hidden>
+            <label for="creator-email">What is your email?</label>
+            <input
+              id="creator-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <div class="creator-form-step" data-creator-step hidden>
+            <label for="creator-handles"
+              >What are your primary social handle(s)?</label
+            >
+            <input id="creator-handles" name="handles" type="text" required />
+          </div>
+          <fieldset class="creator-form-step" data-creator-step hidden>
+            <legend>What is your primary platform?</legend>
+            <div class="creator-options">
+              <label
+                ><input
+                  type="checkbox"
+                  name="platform"
+                  value="Instagram"
+                />Instagram</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="platform"
+                  value="TikTok"
+                />TikTok</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="platform"
+                  value="YouTube"
+                />YouTube</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="platform"
+                  value="YouTube"
+                />FaceBook</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="platform"
+                  value="YouTube"
+                />Substack</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="platform"
+                  value="Pinterest"
+                />Pinterest</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="platform"
+                  value="Blog"
+                />Blog</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="platform"
+                  value="Other"
+                />Other</label
+              >
+            </div>
+            <div class="creator-other-field" data-creator-other-field="platform" hidden>
+              <label for="creator-platform-other">Please specify</label>
+              <input
+                id="creator-platform-other"
+                name="platformOther"
+                type="text"
+                disabled
+              />
+            </div>
+          </fieldset>
+          <fieldset class="creator-form-step" data-creator-step hidden>
+            <legend>What is your approximate audience size?</legend>
+            <div class="creator-options creator-options--single">
+              <label
+                ><input
+                  type="radio"
+                  name="audienceSize"
+                  value="Under 5K"
+                />Under 5K</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="audienceSize"
+                  value="5K–10K"
+                />5K–10K</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="audienceSize"
+                  value="25K–50K"
+                />25K–50K</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="audienceSize"
+                  value="100K–250K"
+                />100K–250K</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="audienceSize"
+                  value="500K+"
+                />500K+</label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="creator-form-step" data-creator-step hidden>
+            <legend>Which content categories best fit your work?</legend>
+            <div class="creator-options">
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Lifestyle"
+                />Lifestyle</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Wellness"
+                />Wellness</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Beauty"
+                />Beauty</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Food + Beverage"
+                />Food + Beverage</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Hospitality + Travel"
+                />Hospitality + Travel</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Fashion"
+                />Fashion</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Motherhood + Family"
+                />Motherhood + Family</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Fitness"
+                />Fitness</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Home + Interiors"
+                />Home + Interiors</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="categories"
+                  value="Other"
+                />Other</label
+              >
+            </div>
+            <div class="creator-other-field" data-creator-other-field="categories" hidden>
+              <label for="creator-category-other">Please specify</label>
+              <input
+                id="creator-category-other"
+                name="categoryOther"
+                type="text"
+                disabled
+              />
+            </div>
+          </fieldset>
+          <fieldset class="creator-form-step" data-creator-step hidden>
+            <legend>Where are you located?</legend>
+            <div class="creator-location-fields">
+              <div>
+                <label for="creator-city">City</label>
+                <input
+                  id="creator-city"
+                  name="city"
+                  type="text"
+                  autocomplete="address-level2"
+                  required
+                />
+              </div>
+              <div>
+                <label for="creator-state">State</label>
+                <input
+                  id="creator-state"
+                  name="state"
+                  type="text"
+                  autocomplete="address-level1"
+                  required
+                />
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="creator-form-step" data-creator-step hidden>
+            <legend>What kinds of partnerships are you interested in?</legend>
+            <div class="creator-options">
+              <label
+                ><input
+                  type="checkbox"
+                  name="interests"
+                  value="Hosted experiences"
+                />Hosted Experiences</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="interests"
+                  value="Brand events"
+                />Brand Events</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="interests"
+                  value="Gifted Colaborations"
+                />Gifted Colaborations</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="interests"
+                  value="Paid Colaborations"
+                />Paid Colaborations</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="interests"
+                  value="UGC"
+                />UGC</label
+              >
+            </div>
+          </fieldset>
+          <p
+            class="creator-modal__error"
+            aria-live="polite"
+            data-creator-error
+          ></p>
+          <div class="creator-modal__actions">
+            <button
+              class="creator-modal__back"
+              type="button"
+              data-creator-back
+              hidden
+            >
+              Back
+            </button>
+            <button
+              class="creator-network__cta"
+              type="submit"
+              data-creator-next
+            >
+              Continue
+            </button>
+          </div>
+        </form>
+        <div
+          class="creator-modal__success"
+          data-creator-success
+          hidden
+          tabindex="-1"
+        >
+          <h2>Thank you.</h2>
+          <p>
+            We’ve received your partnership inquiry and will be in touch if
+            there’s a fit.
+          </p>
+          <button class="creator-network__cta" type="button" data-creator-close>
+            Close
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js?v=3" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.querySelector("[data-creator-modal]");
+        const panel = modal?.querySelector(".creator-modal__panel");
+        const form = document.getElementById("creator-network-form");
+        const steps = Array.from(
+          document.querySelectorAll("[data-creator-step]"),
+        );
+        const openers = document.querySelectorAll("[data-creator-open]");
+        const closers = document.querySelectorAll("[data-creator-close]");
+        const back = document.querySelector("[data-creator-back]");
+        const next = document.querySelector("[data-creator-next]");
+        const number = document.querySelector("[data-creator-step-number]");
+        const error = document.querySelector("[data-creator-error]");
+        const success = document.querySelector("[data-creator-success]");
+        const otherFields = ["platform", "categories"].map((name) => ({
+          container: form?.querySelector(
+            `[data-creator-other-field="${name}"]`,
+          ),
+          toggle: form?.querySelector(`input[name="${name}"][value="Other"]`),
+        }));
+        let step = 0;
+        let previousFocus;
+
+        if (!modal || !panel || !form) return;
+
+        const syncOtherField = ({ container, toggle }) => {
+          const input = container?.querySelector("input");
+          if (!container || !input) return;
+          const show = Boolean(toggle?.checked);
+          container.hidden = !show;
+          input.disabled = !show;
+        };
+
+        otherFields.forEach((field) => {
+          field.toggle?.addEventListener("change", () => syncOtherField(field));
+          syncOtherField(field);
+        });
+
+        const setStep = (index) => {
+          step = index;
+          steps.forEach((item, itemIndex) => {
+            item.hidden = itemIndex !== step;
+          });
+          number.textContent = String(step + 1);
+          back.hidden = step === 0;
+          next.textContent = step === steps.length - 1 ? "Submit" : "Continue";
+          error.textContent = "";
+          const focusable = steps[step].querySelector("input, textarea");
+          focusable?.focus();
+        };
+
+        const open = () => {
+          previousFocus = document.activeElement;
+          modal.hidden = false;
+          document.body.classList.add("creator-modal-open");
+          form.elements.startedAt.value = String(Date.now());
+          setStep(step);
+        };
+
+        const close = () => {
+          modal.hidden = true;
+          document.body.classList.remove("creator-modal-open");
+          previousFocus?.focus();
+        };
+
+        const validateStep = () => {
+          const required = Array.from(
+            steps[step].querySelectorAll("[required]"),
+          );
+          const invalid = required.find((field) => !field.checkValidity());
+          if (invalid) {
+            invalid.reportValidity();
+            return false;
+          }
+          return true;
+        };
+
+        const submit = async () => {
+          const data = new FormData(form);
+          const payload = {
+            name: data.get("name"),
+            email: data.get("email"),
+            handles: data.get("handles"),
+            platform: data.getAll("platform"),
+            platformOther: data.get("platformOther"),
+            audienceSize: data.get("audienceSize"),
+            categories: data.getAll("categories"),
+            categoryOther: data.get("categoryOther"),
+            city: data.get("city"),
+            state: data.get("state"),
+            interests: data.getAll("interests"),
+            company: data.get("company"),
+            startedAt: data.get("startedAt"),
+          };
+          next.disabled = true;
+          next.textContent = "Sending...";
+          try {
+            const response = await fetch("/api/influencer-partnership", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok)
+              throw new Error(
+                result.error || "Unable to send your application.",
+              );
+            form.hidden = true;
+            success.hidden = false;
+            success.focus();
+          } catch (submissionError) {
+            error.textContent = submissionError.message;
+          } finally {
+            next.disabled = false;
+            if (!form.hidden) next.textContent = "Submit";
+          }
+        };
+
+        openers.forEach((button) => button.addEventListener("click", open));
+        closers.forEach((button) => button.addEventListener("click", close));
+        back.addEventListener("click", () => setStep(Math.max(0, step - 1)));
+        const advance = () => {
+          if (!validateStep()) return;
+          if (step === steps.length - 1) submit();
+          else setStep(step + 1);
+        };
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          advance();
+        });
+        document.addEventListener("keydown", (event) => {
+          if (modal.hidden) return;
+          if (event.key === "Escape") close();
+          if (event.key === "Tab") {
+            const focusable = Array.from(
+              panel.querySelectorAll(
+                "button:not([hidden]):not([disabled]), input:not([hidden]):not([disabled]), textarea:not([hidden]):not([disabled])",
+              ),
+            ).filter((item) => !item.closest("[hidden]"));
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last?.focus();
+            }
+            if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first?.focus();
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

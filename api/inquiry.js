@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 
     await resend.emails.send({
       from: process.env.INQUIRY_FROM_EMAIL,
-      to: process.env.INQUIRY_TO_EMAIL,
+      to: ["alan@maykeagency.com", "nia@maykeagency.com"],
       subject: `New inquiry from ${cleanName}`,
       reply_to: cleanEmail,
       html: `
